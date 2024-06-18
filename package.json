@@ -1,0 +1,23 @@
+{
+  "name": "maris-cargo-limited",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon api/index.js",
+    "start": "node api/index.js",
+    "build": "npm install && npm install --prefix client && npm run build --prefix client"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "joi": "^17.13.1",
+    "mongodb": "^6.6.2",
+    "mongoose": "^8.4.0",
+    "nodemon": "^3.1.0"
+  }
+}
