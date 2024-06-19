@@ -35,6 +35,7 @@ export const clientValidation = (data)=>{
         phone:Joi.string().min(10).max(20).required(),
         supplierRef:Joi.string().min(3).max(40).required(),
         weight:Joi.number().min(1).required(),
+        no_pieces:Joi.number().min(1).required(),
         date:Joi.date()
       
     })
@@ -49,6 +50,7 @@ export const deliveryValidation = (data)=>{
         name:Joi.string().min(3).max(20).required(),
         clientRef:Joi.string().min(3).max(40).required(),
         weight:Joi.number().min(0).required(),
+        no_pieces:Joi.number().min(0).required(),
         balance:Joi.number().min(0),
         date:Joi.date().required(),
         deliverer:Joi.string().min(3).max(40).required(),

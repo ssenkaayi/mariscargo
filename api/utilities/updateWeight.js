@@ -14,9 +14,9 @@ export const updateSupplierWeight = async(supplierRef)=>{
         {$group: { _id: null, weight: { $sum:"$weight" } }  }]
     )
 
-    const updateSupplier =async(weight)=>{
+    const updateSupplier =async(weight,no_clients)=>{
 
-        await Supplier.findByIdAndUpdate({_id:supplierRef},{$set:{weight}},{new:true})
+        await Supplier.findByIdAndUpdate({_id:supplierRef},{$set:{weight,no_clients}},{new:true})
         await updateTripWeight(supplier.tripRef)
 
     } 
@@ -24,12 +24,14 @@ export const updateSupplierWeight = async(supplierRef)=>{
     if(supplier_weight.length>0){
 
         const supplierWeightUpdate = supplier_weight[0].weight.toFixed(2)
-        updateSupplier(supplierWeightUpdate)
+        const no_clients = supplier_weight.length
+        updateSupplier(supplierWeightUpdate,no_clients)
 
     }else{
 
         const supplierWeightUpdate = 0
-        updateSupplier(supplierWeightUpdate)
+        const no_clients = 0
+        updateSupplier(supplierWeightUpdate,no_clients)
 
     }
     

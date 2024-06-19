@@ -40,7 +40,7 @@ export const registerEmploye =(async(req,res,next)=>{
 const generateToken = (id)=>{
 
     // it will be expired after 120ms
-    return Jwt.sign({_id:id},process.env.JWT_SECRET,{expiresIn:"6h"})
+    return Jwt.sign({_id:id},process.env.JWT_SECRET,{expiresIn:10})
 }
 
 export const loginEmploye = async(req,res,next)=>{

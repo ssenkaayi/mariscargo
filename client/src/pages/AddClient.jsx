@@ -86,6 +86,11 @@ export default function AddClient() {
                   required onChange={handleChange}
                   />
 
+                  <label className='mb-4 text-1xl font-semibold'>No Pieces</label>
+                  <input type="text" placeholder="weight" id='weight' className='border p-3 rounded-lg'
+                  required onChange={handleChange}
+                  />
+
 
                   <label className='mb-4 text-1xl font-semibold'>Phone No.</label>
                     <input type="text" placeholder="phone" id='phone' className='border p-3 rounded-lg'

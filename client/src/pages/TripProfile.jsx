@@ -97,11 +97,11 @@ export default function TripProfile(props) {
           </div>
   
           <div className='mt-2'>
-              <p className='flex gap-8'><span className='w-20'> Weight:</span><span>{tripDetails.weight}</span></p >
+              <p className='flex gap-8'><span className='w-20'> Weight:</span><span>{tripDetails.weight} kg</span></p >
               <p className='flex gap-8'><span className='w-20'> Trip:</span><span>{tripDetails.name}</span></p >
               <p className='flex gap-8'><span className='w-20'> Date:</span><span>{tripDetails.date}</span></p >
               <p className='flex gap-8'><span className='w-20'>Payment:</span><span>{tripDetails.trip_payment}</span></p >
-              <p className='flex gap-8'><span className='w-20'>Expenses:</span><span>{tripDetails.expense}</span></p >
+              <p className='flex gap-8'><span className='w-20'>Expenses:</span><span>{tripDetails.expense} /=</span></p >
           </div>
   
   

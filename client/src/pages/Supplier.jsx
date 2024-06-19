@@ -32,7 +32,7 @@ export default function Supplier() {
 
       updateClientData(data)
   
-      // console.log(clientData)
+      console.log(clientData)
 
     }catch(error){
       console.log(error)
@@ -42,7 +42,7 @@ export default function Supplier() {
     <React.Fragment>
 
     <Table tableBody={clientData} tableHeading={supplierTable}
-     column2='trip_name' title="Suppliers" column4='no_clients' 
+     column2='_id' title="Suppliers" column4='no_clients' 
      column3='weight' path='/' actionPath= '/supplierProfile/'/>
 
   </React.Fragment>

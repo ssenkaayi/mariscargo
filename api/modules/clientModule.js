@@ -5,6 +5,7 @@ const clientSchema = new mongoose.Schema({
 
     name:{type:String,required:true,},
     weight:{type:Number,required:true},
+    no_pieces:{type:Number,required:true},
     phone:{type:String,required:true},
     supplierRef:{type:String,required:true},
     date:{type:Date,required:true},
