@@ -65,7 +65,7 @@ export default function TripProfile(props) {
         setTripDetails(data.trip)
         setSuppliers(data.suppliers)
         setExpenses(data.expense)
-        // console.log(data)
+        console.log(data.suppliers)
 
       }
       catch(error){
@@ -140,8 +140,8 @@ export default function TripProfile(props) {
 
           <ProfileTable tableBody={suppliers}
             tableHeading={tripProfileTable} column2='weight' 
-            title="Trips" column4='trip_payment' 
-            column3='payments' path='/addTrip' actionPath= '/supplierProfile/'/>
+            title="Trips" column4='no_clients' 
+            column3='_id' path='/addTrip' actionPath= '/supplierProfile/'/>
   
         </div>
   
