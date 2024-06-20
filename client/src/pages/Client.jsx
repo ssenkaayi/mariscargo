@@ -25,6 +25,16 @@ export default function Client() {
   
       const data = await res.json()
 
+      if(data.success===false){
+
+        console.log(data.message)
+        alert('token expired login again')
+        window.localStorage.clear()
+        window.location.href = './login'
+
+        return
+      }
+
       if(data.message === 'token expired'){
         alert('token expired login again')
         window.localStorage.clear()

@@ -4,7 +4,7 @@ import { errorHandler } from "./internalErrorHandler.js";
 export const verifyToken = (req,res,next)=>{
 
     const token = req.cookies.access_token;
-    // console.log(token)
+    console.log(token)
 
     if(!token) return next(errorHandler(401,'un authorised'))
 
@@ -22,7 +22,7 @@ export const verifyToken = (req,res,next)=>{
         
     });
 
-    console.log(user)
+    // console.log(user)
 
     if(user=='token expiered') return next(errorHandler(403,"token expired"))
 
