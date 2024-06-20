@@ -87,7 +87,7 @@ export default function AddClient() {
                   />
 
                   <label className='mb-4 text-1xl font-semibold'>No Pieces</label>
-                  <input type="text" placeholder="weight" id='weight' className='border p-3 rounded-lg'
+                  <input type="text" placeholder="No Pieces" id='no_pieces' className='border p-3 rounded-lg'
                   required onChange={handleChange}
                   />
 
