@@ -9,6 +9,7 @@ import { Payment } from '../modules/paymentModule.js';
 import { errorHandler } from '../utilities/internalErrorHandler.js';
 
 export const createClient = async(req,res,next)=>{
+    console.log(req.body)
 
     try{    
         // verifying client req.body to ensure we are passing the right data to our database.
@@ -22,7 +23,7 @@ export const createClient = async(req,res,next)=>{
         const supplierExist = await Supplier.findById(req.body.supplierRef)
         if(!supplierExist) return res.status(400).json({"message":"supplier with supplierRef doesnt exist"})
 
-        const clientData = {date:supplierExist.date,weight:req.body.weight,name:req.body.name,supplierRef:req.body.supplierRef,phone:req.body.phone}
+        const clientData = {date:supplierExist.date,weight:req.body.weight,name:req.body.name,supplierRef:req.body.supplierRef,phone:req.body.phone,no_pieces:req.body.no_pieces}
 
         // registering new client
         const client = await Client.create(clientData)
