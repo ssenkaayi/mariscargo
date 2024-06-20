@@ -11,7 +11,7 @@ export const updateSupplierWeight = async(supplierRef)=>{
     if(!supplier) return res.status(400).json({"message":"no suppliers with id found"})
 
     const supplier_weight = await Client.aggregate([{ $match: {supplierRef}},
-        {$group: { _id: null, weight: { $sum:"$weight" } }  }]
+        {$group: { _id: null, weight: { $sum:"$weight" } ,count: { $sum: 1 } }  }]
     )
 
     const updateSupplier =async(weight,no_clients)=>{
@@ -24,7 +24,7 @@ export const updateSupplierWeight = async(supplierRef)=>{
     if(supplier_weight.length>0){
 
         const supplierWeightUpdate = supplier_weight[0].weight.toFixed(2)
-        const no_clients = supplier_weight.length
+        const no_clients = supplier_weight[0].count
         updateSupplier(supplierWeightUpdate,no_clients)
 
     }else{
