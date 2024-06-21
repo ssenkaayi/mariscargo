@@ -26,18 +26,20 @@ export default function Trip() {
 
       if(data.success===false){
 
-        console.log(data.message)
-        alert('token expired login again')
         window.localStorage.clear()
         window.location.href = './login'
+        console.log(data.message)
+        alert('token expired login again')
 
         return
       }
 
       if(data.message === 'token expired'){
-        alert('token expired login again')
+        
         window.localStorage.clear()
         window.location.href = './login'
+        alert('token expired login again')
+
       }
 
       updateClientData(data)
