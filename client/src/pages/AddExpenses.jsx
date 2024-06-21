@@ -77,8 +77,8 @@ export default function AddExpenses() {
 
               <div className='flex flex-col gap-4'>
 
-                  <label className='mb-4 text-1xl font-semibold'>Date</label>
-                  <input type="date" placeholder="Date" id='date' className='border p-3 rounded-lg'
+                  <label className='mb-4 text-1xl font-semibold'>Ticket Fees</label>
+                  <input type="Number" placeholder="Ticket Fees" id='ticket_fees' className='border p-3 rounded-lg'
                   required onChange={handleChange}
                   />
 
@@ -88,14 +88,14 @@ export default function AddExpenses() {
                   />
 
 
-                  <label className='mb-4 text-1xl font-semibold'>Market Fee</label>
-                    <input type="Number
-                    " placeholder="Market Fee" id='market_fees' className='border p-3 rounded-lg'
+                  <label className='mb-4 text-1xl font-semibold'>Transport</label>
+                    <input type="Number" placeholder="Transport" id='transport' className='border p-3 rounded-lg'
                     required onChange={handleChange}
                   />
 
-                  <label className='mb-4 text-1xl font-semibold'>Transport</label>
-                    <input type="Number" placeholder="Transport" id='transport' className='border p-3 rounded-lg'
+                  <label className='mb-4 text-1xl font-semibold'>Market Fee</label>
+                    <input type="Number
+                    " placeholder="Market Fee" id='market_fees' className='border p-3 rounded-lg'
                     required onChange={handleChange}
                   />
 

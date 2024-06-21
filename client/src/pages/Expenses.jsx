@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import Table from '../components/Table'
-import { deliveryTable, expenseProfileTable } from '../data/TableHeading'
+import {expenseTable } from '../data/TableHeading'
 
 export default function Expenses() {
 
@@ -54,7 +54,7 @@ export default function Expenses() {
     <React.Fragment>
 
     <Table tableBody={expenseData} 
-      tableHeading={expenseProfileTable} column2='transport' 
+      tableHeading={expenseTable} column2='transport' 
       title="Trips" column4='market_fees' 
       column3='tax' path='/addTrip' actionPath= '/supplierProfile/' />
 

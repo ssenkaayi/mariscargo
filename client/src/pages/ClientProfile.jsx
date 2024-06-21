@@ -5,6 +5,7 @@ import { useParams} from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { supplierProfileTable } from '../data/TableHeading';
 import ProfileTable from '../components/ProfileTable';
+import { clientProfileDeliveryTable,clientProfilePaymentTable } from '../data/TableHeading';
 
 export default function ClientProfile(props) {
 
@@ -26,7 +27,7 @@ export default function ClientProfile(props) {
     }
 
     const goBackClient = ()=>{
-      navigate(`/trips`)
+      navigate(`/clients`)
     }
 
 
@@ -53,7 +54,7 @@ export default function ClientProfile(props) {
         setClientDetails(data.getClient)
         setDeliveries(data.deliveries)
         setPayments(data.payments)
-        console.lclient
+        // console.log(data)
       
         if(data.succuss===false){
           setError(true)
@@ -83,7 +84,7 @@ export default function ClientProfile(props) {
       console.log(actionPath1)
 
       const route = '/clientProfile/' + id
-      console.log(route)
+      // console.log(route)
   
       navigate(route)
     }
@@ -116,10 +117,10 @@ export default function ClientProfile(props) {
                  
             <div className='m-2'>
               <p className='flex gap-8'><span className='w-20'> Weight:</span><span>{clientDetails.weight} kgs</span></p >
-              <p className='flex gap-8'><span className='w-20'> Trip:</span><span>{clientDetails.name}</span></p >
+              <p className='flex gap-8'><span className='w-20'> Client:</span><span>{clientDetails.name}</span></p >
               <p className='flex gap-8'><span className='w-20'>Deliveries:</span><span>{clientDetails.deliveries} kgs</span></p >
               <p className='flex gap-8'><span className='w-20'> Payments:</span><span>$ {clientDetails.payments}</span></p >
-              <p className='flex gap-8'><span className='w-20'> Date:</span><span>{clientDetails.date}</span></p >
+              <p className='flex gap-8'><span className='w-20'> No.Pieces:</span><span>{clientDetails.no_pieces}</span></p >
 
             </div>
 
@@ -138,9 +139,9 @@ export default function ClientProfile(props) {
           </div>
           
           <ProfileTable tableBody={deliveries}
-            tableHeading={supplierProfileTable} column2='weight' 
-            title="Supplier" column4='trip_payment' 
-            column3='payments' path='/addSupplier' actionPath= '/clientProfile/'/>
+            tableHeading={clientProfileDeliveryTable} column2='weight' 
+            title="Supplier" column4='deliverer' 
+            column3='no_pieces' path='/addSupplier' actionPath= '/clientProfile/'/>
   
         </div>
 
@@ -159,9 +160,9 @@ export default function ClientProfile(props) {
             </div>
   
             <ProfileTable tableBody={payments}
-            tableHeading={supplierProfileTable} column2='weight' 
-            title="Supplier" column4='trip_payment' 
-            column3='payments' path='/addSupplier' actionPath= '/clientProfile/'/>
+            tableHeading={clientProfilePaymentTable} column2='recieptNo' 
+            title="Supplier" column4='amount' 
+            column3='kg_rate' path='/addSupplier' actionPath= '/clientProfile/'/>
   
           </div>
         </div>  

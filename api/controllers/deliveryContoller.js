@@ -10,6 +10,7 @@ export const createDelivery = async(req,res,next)=>{
         // console.log(req.body)
         const client = await Client.findById(req.body.clientRef)
         if(!client) return next(errorHandler(400,"client with clientRef does not exist"))
+        console.log(client)
         
         const delivery = {...req.body,name:client.name}
         
@@ -19,7 +20,7 @@ export const createDelivery = async(req,res,next)=>{
 
         await updateDeliveryWeight(delivery.clientRef)
         
-        const totalWeightDelivered = client.deliveries+req.body.weight
+        const totalWeightDelivered = client.deliveries+delivery.weight
         if(client.weight<totalWeightDelivered) return next(errorHandler(400,`cannot deliver more than  ${client.weight} kgs`))
 
         const newDelivery = await Delivery.create(delivery)
