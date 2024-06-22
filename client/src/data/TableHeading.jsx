@@ -10,7 +10,7 @@ export const supplierProfileTable = ['Date','Clent','Weight','Phone No','No Piec
 
 export const expenseProfileTable = ['Date','Ticket Fees','Transport','Tax','Market fees']
 
-export const expenseTable = ['Date','Name','Ticket Fees','Transport','Tax']
+export const expenseTable = ['Date','Trip','Ticket Fees','Transport','Tax']
 
 export const tripTable =    ['Date','Trip','Weight','Expenses','Trip payment']
 

@@ -54,9 +54,9 @@ export default function Expenses() {
     <React.Fragment>
 
     <Table tableBody={expenseData} 
-      tableHeading={expenseTable} column2='transport' 
-      title="Trips" column4='market_fees' 
-      column3='tax' path='/addTrip' actionPath= '/supplierProfile/' />
+      tableHeading={expenseTable} column2='ticket_fees' 
+      title="Trips" column4='tax' 
+      column3='transport' path='/addTrip' actionPath= '/supplierProfile/' />
 
   </React.Fragment>
   )
