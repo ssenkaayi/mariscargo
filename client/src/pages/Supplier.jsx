@@ -23,10 +23,11 @@ export default function Supplier() {
       })
   
       const data = await res.json()
+      // console.log(data)
 
       if(data.success===false){
 
-        console.log(data.message)
+        // console.log(data.message)
         alert('token expired login again')
         window.localStorage.clear()
         window.location.href = './login'
@@ -52,7 +53,7 @@ export default function Supplier() {
     <React.Fragment>
 
     <Table tableBody={clientData} tableHeading={supplierTable}
-     column2='_id' title="Suppliers" column4='no_clients' 
+     column2='tripName' title="Suppliers" column4='no_clients' 
      column3='weight' path='/' actionPath= '/supplierProfile/'/>
 
   </React.Fragment>

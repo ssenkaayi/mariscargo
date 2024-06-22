@@ -20,6 +20,7 @@ export const supplierValidation = (data)=>{
 
         name:Joi.string().min(3).max(20).required(),
         tripRef:Joi.string().min(3).max(40).required(),
+        tripName:Joi.string().min(3).max(40).required(),
         date:Joi.date().required(),
       
     })

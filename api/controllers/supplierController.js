@@ -13,14 +13,15 @@ export const createSupplier = async(req,res,next)=>{
         const tripExist = await Trip.findById(req.body.tripRef)
         if(!tripExist) return next(errorHandler(400,"trip with provided tripRef not found"))
 
-        const supplierData = {date:tripExist.date,name:req.body.name,tripRef:req.body.tripRef}
-
+        const supplierData = {date:tripExist.date,name:req.body.name,tripRef:req.body.tripRef,tripName:tripExist.name}
+     
         // verifying supplier req.body to ensure we are passing the right data to our database.
         const {error} = supplierValidation(supplierData)
         if(error) return next(errorHandler(400,error.details[0].message))
             
         const supplier = await Supplier.create(supplierData)
         if(!supplier) return next(errorHandler(400,"creating supplier failed"))
+        // console.log(supplier)
 
         res.status(200).json(supplier)
 

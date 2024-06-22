@@ -1,6 +1,6 @@
 export const employeTable = ['Date','Fisrt name','Last name','Email','Phone','Address','Role']
 
-export const supplierTable = ['Date','Supplier','Id','Weight','NO Clients']
+export const supplierTable = ['Date','Supplier','Trip','Weight','NO Clients']
 
 export const clientTable = ['Date','Client','Weight','Payments','Delivery']
 
