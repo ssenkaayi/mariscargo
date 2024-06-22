@@ -86,7 +86,7 @@ export const expenseValidation = (data)=>{
         transport:Joi.number().min(0).required(),
         market_fees:Joi.number().min(0).required(),
         date:Joi.date().required(),
-        name:Joi.string().min(3).max(40).required(),
+        ticket_fees:Joi.string().min(3).max(40).required(),
       
     })
 
