@@ -134,7 +134,7 @@ export default function SupplierProfile(props) {
 
             <ProfileTable tableBody={clients}
             tableHeading={supplierProfileTable} column2='weight' column1='name'
-            title="Supplier" column4='trip_payment' 
+            title="Supplier" column4='no_pieces' 
             column3='payments' path='/addSupplier' actionPath= '/clientProfile/'/>
   
           </div>
