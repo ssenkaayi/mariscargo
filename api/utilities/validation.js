@@ -81,7 +81,7 @@ export const expenseValidation = (data)=>{
 
     const schema = Joi.object({
 
-        // name:Joi.string().min(3).max(20).required(),
+        name:Joi.string().min(3).max(20).required(),
         tripRef:Joi.string().min(20).max(40).required(),
         tax:Joi.number().min(0).required(),
         transport:Joi.number().min(0).required(),

@@ -11,8 +11,8 @@ export const createExpense = async(req,res,next)=>{
         const tripExist = await Trip.findById(req.body.tripRef)
         if(!tripExist) return next(errorHandler(400,"supplier with supplierRef doesnt exist"))
 
-        const expenseData = {...req.body,name:tripExist.name}
-        // console.log(expenseData)
+        const expenseData = {...req.body,name:tripExist.name,date:tripExist.date}
+        console.log(expenseData)
 
         // verifying client req.body to ensure we are passing the right data to our database.
         const {error} = expenseValidation(expenseData)

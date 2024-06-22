@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 export default function ProfileTable(props) {
 
-  const{tableBody,tableHeading,title,column2,column3,column4,path,actionPath} = props
+  const{tableBody,tableHeading,title,column1,column2,column3,column4,path,actionPath} = props
 
   const navigate = useNavigate()
 
@@ -45,7 +45,7 @@ export default function ProfileTable(props) {
                     <tr className='text-center ' key={client._id}>
 
                         <td className='p-2'>{client.date.length>0?client.date.split("T",1):"no date"}</td>
-                        <td >{client.name}</td>
+                        <td >{client[column1]}</td>
                         <td >{client[column2]}</td>
                         <td >{client[column3]}</td>
                         <td >{client[column4]}</td>

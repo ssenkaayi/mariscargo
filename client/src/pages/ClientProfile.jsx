@@ -140,7 +140,7 @@ export default function ClientProfile(props) {
           
           <ProfileTable tableBody={deliveries}
             tableHeading={clientProfileDeliveryTable} column2='weight' 
-            title="Supplier" column4='deliverer' 
+            title="Supplier" column4='deliverer' column1='name'
             column3='no_pieces' path='/addSupplier' actionPath= '/clientProfile/'/>
   
         </div>
@@ -161,7 +161,7 @@ export default function ClientProfile(props) {
   
             <ProfileTable tableBody={payments}
             tableHeading={clientProfilePaymentTable} column2='recieptNo' 
-            title="Supplier" column4='amount' 
+            title="Supplier" column4='amount' column1='name'
             column3='kg_rate' path='/addSupplier' actionPath= '/clientProfile/'/>
   
           </div>
