@@ -19,7 +19,7 @@ export const createExpense = async(req,res,next)=>{
         if(error) return next(errorHandler(400,error.details[0].message))
 
         const expenseExist = await Expense.findOne({tripRef:req.body.tripRef})
-        console.log(expenseExist)
+        // console.log(expenseExist)
         await updateExpenses(expenseExist.tripRef)
         if(expenseExist) return next(errorHandler(403,"expenses table for this trip exist"))
 

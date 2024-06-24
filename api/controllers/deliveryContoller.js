@@ -10,7 +10,7 @@ export const createDelivery = async(req,res,next)=>{
         // console.log(req.body)
         const client = await Client.findById(req.body.clientRef)
         if(!client) return next(errorHandler(400,"client with clientRef does not exist"))
-        console.log(client)
+        // console.log(client)
         
         const delivery = {...req.body,name:client.name}
         

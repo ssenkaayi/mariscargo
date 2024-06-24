@@ -2,7 +2,7 @@
 import Client from '../modules/clientModule.js'
 import Supplier from '../modules/supplierModule.js'
 import {clientValidation} from '../utilities/validation.js'
-import { updateSupplierWeight} from '../utilities/updateWeight.js'
+import { deleteDeliveriesInClient, deletePaymentsInClient, updateSupplierWeight} from '../utilities/updateWeight.js'
 import { isValidObjectId } from "mongoose";
 import { Delivery } from '../modules/deliveryModule.js';
 import { Payment } from '../modules/paymentModule.js';
@@ -108,7 +108,7 @@ export const getClient = async(req,res)=>{
    
 }
 
-export const deleteClient = async(req,res)=>{
+export const deleteClient = async(req,res,next)=>{
 
     try{ 
         const isValidId = isValidObjectId(req.params.id)
@@ -116,6 +116,13 @@ export const deleteClient = async(req,res)=>{
 
         const client = await Client.findById(req.params.id)
         if(!client) return next(errorHandler(400,"client with id not foung"))
+    
+
+        const deleteDeliveries = await deleteDeliveriesInClient(req.params.id)
+        // if(!deleteDeliveries) return next(errorHandler(400,'deleting deliveries with clientRef failed'))
+
+        const deletePayments = await deletePaymentsInClient(req.params.id)
+        // if(!deletePayments) return next(errorHandler(400,'deleting payments with clientRef failed'))
 
         const supplier = await Supplier.findById(client.supplierRef)
         if(!supplier) return rnext(errorHandler(400,"no supplier with provided supplierRef found"))

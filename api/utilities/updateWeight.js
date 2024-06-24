@@ -4,6 +4,7 @@ import Trip from "../modules/tripModule.js"
 import { Delivery } from "../modules/deliveryModule.js";
 import { Payment } from "../modules/paymentModule.js";
 import Expense from "../modules/expense.js";
+import { errorHandler } from "./internalErrorHandler.js";
 
 export const updateSupplierWeight = async(supplierRef)=>{
 
@@ -167,6 +168,30 @@ export const deleteSuppliersInTrip = async(tripRef)=>{
 
         const deleteSuppliers = await Supplier.findByIdAndDelete(suppliers[supplier]._id)
         if(!deleteSuppliers) return res.status(400).json({"status":"failed to delete client in supplier"})
+    }
+}
+
+export const deleteDeliveriesInClient = async(clientRef)=>{
+
+    const deliveries = await Delivery.find({clientRef})
+    if(!deliveries) return res.status(400).json(Error)
+    
+    for (let delivery = 0; delivery<deliveries.length;delivery++ ){
+    
+        const deleteDelivery = await Delivery.findByIdAndDelete(deliveries[delivery]._id)
+        if(!deleteDelivery) return res.status(400).json({"status":"failed to delete delivery with clientRef"})
+    }
+}
+
+export const deletePaymentsInClient = async(clientRef)=>{
+
+    const payments = await Payment.find({clientRef})
+    if(!payments) return res.status(400).json(Error)
+    
+    for (let payment = 0; payment<payments.length;payment++ ){
+    
+        const deletePayment = await Payment.findByIdAndDelete(payments[payment]._id)
+        if(!deletePayment) return res.status(400).json({"status":"failed to delete payment with clientRef"})
     }
 }
 

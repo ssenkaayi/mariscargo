@@ -35,8 +35,9 @@ export const createSupplier = async(req,res,next)=>{
 export const deleteSupplier = async(req,res,next)=>{
 
     try{
-        // deleting suppliers in trip
-        await deleteClientsInSupplier(req.params.id)
+        // deleting clients in supplier with the supplier id
+        const deleteClients = await deleteClientsInSupplier(req.params.id)
+        if(!deleteClients) return next(errorHandler(400,"error deleting clients with supplierRef"))
         
         const deleteSupplier = await Supplier.findByIdAndDelete(req.params.id)
         if(!deleteSupplier) return next(errorHandler(400,"error deleting supplier"))
