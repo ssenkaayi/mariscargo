@@ -53,7 +53,7 @@ export default function Deliveries() {
 
     <React.Fragment>
 
-      <Table tableBody={clientData} tableHeading={deliveryTable}
+      <Table tableDataApi = '/api/delivery'tableHeading={deliveryTable}
        column2='weight' title="Deliveries" column3='no_pieces' 
        column4='deliverer' path='/clients' />
 
