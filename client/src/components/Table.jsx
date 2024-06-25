@@ -4,11 +4,58 @@ import { TbTruckDelivery } from "react-icons/tb";
 import { MdEditNote } from "react-icons/md";
 import { RiSecurePaymentLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useEffect } from 'react';
 import Dropdown from './Dropdown';
 
 export default function Table(props) {
 
-  const{tableBody,tableHeading,title,column2,column3,column4,path,actionPath} = props
+  const{tableDataApi,tableHeading,title,column2,column3,column4,path,actionPath,deleteApi} = props
+
+  const[tableData, updateTableData] = useState([])
+
+  useEffect(()=>{
+
+    fetchClient()
+
+  },[])
+
+  const fetchClient = async()=>{
+
+    try{
+
+      const res = await fetch(tableDataApi,{
+        method:'GET',
+      })
+  
+      const data = await res.json()
+      // console.log(data.message)
+
+      if(data.success===false){
+
+        window.localStorage.clear()
+        window.location.href = './login'
+        console.log(data.message)
+        alert('token expired login again')
+
+        return
+      }
+
+      if(data.message === 'token expired'){
+        
+        window.localStorage.clear()
+        window.location.href = './login'
+        alert('token expired login again')
+
+      }
+
+      updateTableData(data)
+
+    }catch(error){
+      console.log(error)
+    }
+
+  }
   
   const navigate = useNavigate()
 
@@ -18,6 +65,38 @@ export default function Table(props) {
     // console.log(route)
 
     navigate(route)
+  }
+
+  const handleDelete = async(id)=>{
+
+    const route = deleteApi + id
+    console.log(route)
+
+    try{
+  
+      const res = await fetch(route,{
+        method:"DELETE",
+      })
+  
+      const data = await res.json();
+  
+      // console.log(data)
+  
+      if(data.success===false){
+        // console.log(data.message)
+        setError(data.message)
+        setLoading(false)
+      }
+       
+      alert('data deleted successfully')
+      updateTableData(tableData.filter((client)=>client._id!==id))
+
+    }catch(error){
+      console.log(error)
+      // setError(error.message)
+    }
+
+    // navigate(route)
   }
 
   return (
@@ -58,7 +137,7 @@ export default function Table(props) {
 
           <tbody className='p-2'>
 
-            {tableBody.length>0?tableBody.map((client,index)=>{
+            {tableData.length>0?tableData.map((client,index)=>{
 
               return(  
                 
@@ -76,7 +155,7 @@ export default function Table(props) {
 
                       <span className='cursor-pointer bg-green-600 p-2 rounded-lg'>  EDIT</span>
                       <span onClick={()=>handleModify(client._id)} className='cursor-pointer bg-slate-200 p-2 rounded-lg'> MODIFY</span>
-                      <span className='cursor-pointer bg-red-600 p-2 rounded-lg'>DELETE</span>
+                      <span onClick={()=>handleDelete(client._id)} className='cursor-pointer bg-red-600 p-2 rounded-lg'>DELETE</span>
            
                     </div>
 

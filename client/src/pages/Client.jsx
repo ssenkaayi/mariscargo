@@ -7,55 +7,11 @@ import { clientTable } from '../data/TableHeading'
 
 export default function Client() {
 
-  const[clientData, updateClientData] = useState([])
-
-  useEffect(()=>{
-
-    fetchClient()
-
-  },[])
-
-  const fetchClient = async()=>{
-
-    try{
-
-      const res = await fetch('/api/client/',{
-        method:'GET',
-      })
-  
-      const data = await res.json()
-
-      if(data.success===false){
-
-        console.log(data.message)
-        alert('token expired login again')
-        window.localStorage.clear()
-        window.location.href = './login'
-
-        return
-      }
-
-      if(data.message === 'token expired'){
-        alert('token expired login again')
-        window.localStorage.clear()
-        window.location.href = './login'
-      }
-
-      updateClientData(data)
-  
-      // console.log(clientData)
-
-    }catch(error){
-      console.log(error)
-    }
-
-
-  }
   return (
 
     <React.Fragment>
 
-      <Table tableBody={clientData} tableHeading={clientTable} 
+      <Table tableDataApi = '/api/client'  tableHeading={clientTable} 
       column2='weight' title="Clients" column4='deliveries' 
       column3='payments' path='/suppliers' actionPath= '/clientProfile/'/>
 
