@@ -13,6 +13,7 @@ export default function Table(props) {
   const{tableDataApi,tableHeading,title,column2,column3,column4,path,actionPath,deleteApi} = props
 
   const[tableData, updateTableData] = useState([])
+  const[error, setError] = useState(null)
 
   useEffect(()=>{
 
@@ -80,12 +81,13 @@ export default function Table(props) {
   
       const data = await res.json();
   
-      // console.log(data)
+      console.log(data)
   
       if(data.success===false){
-        // console.log(data.message)
-        setError(data.message)
-        setLoading(false)
+        alert('deleting failed')
+        return console.log(data.message)
+        // setError(data.message)
+        // setLoading(false)
       }
        
       alert('data deleted successfully')

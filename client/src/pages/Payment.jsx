@@ -1,7 +1,5 @@
 import React from 'react'
 import Table from '../components/Table'
-import { useEffect } from 'react'
-import { useState } from 'react'
 import { paymentTable } from '../data/TableHeading'
 
 export default function Payment() {
