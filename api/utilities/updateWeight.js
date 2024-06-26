@@ -151,6 +151,9 @@ export const deleteClientsInSupplier = async(supplierRef)=>{
     if(!clients) return res.status(400).json(Error)
     
     for (let client = 0; client<clients.length;client++ ){
+
+        deleteDeliveriesInClient(clients[client]._id)
+        deletePaymentsInClient(clients[client]._id)
     
         const deleteClients = await Client.findByIdAndDelete(clients[client]._id)
         if(!deleteClients) return res.status(400).json({"status":"failed to delete client in supplier"})
@@ -175,27 +178,27 @@ export const deleteDeliveriesInClient = async(clientRef)=>{
 
     const deliveries = await Delivery.find({clientRef})
     if(!deliveries) return res.status(400).json(Error)
-    console.log(deliveries)
+    // console.log(deliveries)
     
     for (let delivery = 0; delivery<deliveries.length;delivery++ ){
     
         const deleteDelivery = await Delivery.findByIdAndDelete(deliveries[delivery]._id)
         if(!deleteDelivery) return res.status(400).json({"status":"failed to delete delivery with clientRef"})
     }
-    console.log(deliveries)
+    // console.log(deliveries)
 }
 
 export const deletePaymentsInClient = async(clientRef)=>{
 
     const payments = await Payment.find({clientRef})
     if(!payments) return res.status(400).json(Error)
-    console.log(payments)
+    // console.log(payments)
     
     for (let payment = 0; payment<payments.length;payment++ ){
     
         const deletePayment = await Payment.findByIdAndDelete(payments[payment]._id)
         if(!deletePayment) return res.status(400).json({"status":"failed to delete payment with clientRef"})
     }
-    console.log(payments)
+    // console.log(payments)
 }
 

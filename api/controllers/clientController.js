@@ -119,10 +119,10 @@ export const deleteClient = async(req,res,next)=>{
     
 
         const deleteDeliveries = await deleteDeliveriesInClient(req.params.id)
-        // if(!deleteDeliveries) return next(errorHandler(400,'deleting deliveries with clientRef failed'))
+        if(!deleteDeliveries) return next(errorHandler(400,'deleting deliveries with clientRef failed'))
 
         const deletePayments = await deletePaymentsInClient(req.params.id)
-        // if(!deletePayments) return next(errorHandler(400,'deleting payments with clientRef failed'))
+        if(!deletePayments) return next(errorHandler(400,'deleting payments with clientRef failed'))
 
         const supplier = await Supplier.findById(client.supplierRef)
         if(!supplier) return rnext(errorHandler(400,"no supplier with provided supplierRef found"))
