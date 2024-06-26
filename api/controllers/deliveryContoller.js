@@ -20,7 +20,8 @@ export const createDelivery = async(req,res,next)=>{
 
         await updateDeliveryWeight(delivery.clientRef)
         
-        const totalWeightDelivered = client.deliveries+delivery.weight
+        const totalWeightDelivered = parseInt(client.deliveries) + parseInt(delivery.weight)
+        console.log(totalWeightDelivered)
         if(client.weight<totalWeightDelivered) return next(errorHandler(400,`cannot deliver more than  ${client.weight} kgs`))
 
         const newDelivery = await Delivery.create(delivery)
