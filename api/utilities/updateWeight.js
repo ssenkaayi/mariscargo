@@ -163,7 +163,7 @@ export const deleteClientsInSupplier = async(supplierRef)=>{
 export const deleteSuppliersInTrip = async(tripRef)=>{
 
     const suppliers = await Supplier.find({tripRef})
-    if(!suppliers) return resizeBy.status(400).json({"status":"failed to get suppliers with tripRef"})
+    if(!suppliers) return res.status(400).json({"status":"failed to get suppliers with tripRef"})
 
     for (let supplier = 0; supplier<suppliers.length;supplier++ ){
 
@@ -200,5 +200,19 @@ export const deletePaymentsInClient = async(clientRef)=>{
         if(!deletePayment) return res.status(400).json({"status":"failed to delete payment with clientRef"})
     }
     // console.log(payments)
+}
+
+export const deleteExpenseInTrip = async(tripRef)=>{
+
+    const expenses = await Expense.find({tripRef})
+    // if(!expenses) return res.status(400).json(Error)
+    // console.log(expenses)
+
+    for (let expense = 0; expense<expenses.length;expense++ ){
+    
+        const deleteExpense = await Expense.findByIdAndDelete(expenses[expense]._id)
+        if(!deleteExpense) return next(errorHandler(400,"failed to delete payment with clientRef"))
+    }
+   
 }
 

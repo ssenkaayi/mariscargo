@@ -1,6 +1,6 @@
 import Trip from "../modules/tripModule.js"
 import { tripValidation } from "../utilities/validation.js"
-import { deleteSuppliersInTrip } from "../utilities/updateWeight.js"
+import { deleteExpenseInTrip, deleteSuppliersInTrip } from "../utilities/updateWeight.js"
 import Supplier from "../modules/supplierModule.js"
 import Expense from "../modules/expense.js"
 import { errorHandler } from "../utilities/internalErrorHandler.js"
@@ -80,8 +80,12 @@ export const updateTrip = async(req,res,next)=>{
 export const deleteTrip = async(req,res,next)=>{
 
     try{
+        const deleteExpenses = await deleteExpenseInTrip(req.params.id)
+        // if(!deleteExpenses) return next(errorHandler(400,"deleting expenses with tripRef failed"))
+
         // deleting suppliers in trip
-        await deleteSuppliersInTrip(req.params.id)
+        const deleteSuppliers = await deleteSuppliersInTrip(req.params.id)
+        // if(!deleteSuppliers) return next(errorHandler(400,"deleting suppliers with tripRef failed"))
 
         const deleteTrip = await Trip.findByIdAndDelete(req.params.id)
         if(!deleteTrip) return next(errorHandler(400,"deleting trip failed!"))
