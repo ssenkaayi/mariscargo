@@ -100,7 +100,7 @@ export const employeeValidation = (data)=>{
 
         name:Joi.string().min(3).max(20).required(),
         role:Joi.string().min(4).max(20).required(),
-        email:Joi.string().max(20).required(),
+        email:Joi.string().min(10).required(),
         phone:Joi.string().min(10).required(),
         address:Joi.string().min(3).required(),
         date:Joi.date().required(),

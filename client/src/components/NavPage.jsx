@@ -21,6 +21,12 @@ import ClientProfile from '../pages/ClientProfile'
 import SupplierProfile from '../pages/SupplierProfile'
 import TripProfile from '../pages/TripProfile'
 import AddEmployee from '../pages/AddEmployee'
+import EditClient from '../pages/EditClient'
+import EditSupplier from '../pages/EditSupplier'
+import EditDeliver from '../pages/EditDeliver'
+import EditPayment from '../pages/EditPayment'
+import EditExpenses from '../pages/EditExpenses'
+import EditTrip from '../pages/EditTrip'
 
 export default function NavPage() {
   return (
@@ -50,7 +56,13 @@ export default function NavPage() {
             <Route path='/clientProfile/:id' element={<ClientProfile/>}/>
             <Route path='/supplierProfile/:id' element={<SupplierProfile/>}/>
             <Route path='/tripProfile/:id' element={<TripProfile/>}/>
-            <Route path='/addEmployee' element={<AddEmployee/>}/>
+            <Route path='/editClient/:id' element={<EditClient/>}/>
+            <Route path='/editTrip/:id' element={<EditTrip/>}/>
+            <Route path='/editSupplier/:id' element={<EditSupplier/>}/>
+            <Route path='/editDelivery/:id' element={<EditDeliver/>}/>
+            <Route path='/editPayment/:id' element={<EditPayment/>}/>
+            <Route path='/editExpenses/:id' element={<EditExpenses/>}/>
+            {/* <Route path='/editTrip' element={<EditClient/>}/> */}
 
           </Route>
 

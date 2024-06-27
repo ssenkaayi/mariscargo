@@ -13,7 +13,8 @@ export default function Client() {
 
       <Table tableDataApi = '/api/client'  tableHeading={clientTable} 
       column2='weight' title="Clients" column4='deliveries' 
-      column3='payments' path='/suppliers' actionPath= '/clientProfile/' deleteApi = '/api/client/'/>
+      column3='payments' path='/suppliers' actionPath= '/clientProfile/' 
+      deleteApi = '/api/client/' editPath='editClient/'/>
 
     </React.Fragment>
     

@@ -11,7 +11,8 @@ export default function Trip() {
     <Table tableDataApi = '/api/trip/getTrips'
      tableHeading={tripTable} column2='weight' 
      title="Trips" column4='trip_payment' 
-     column3='expense' path='/addTrip' actionPath= '/tripProfile/' deleteApi = '/api/trip/deleteTrip/' />
+     column3='expense' path='/addTrip' actionPath= '/tripProfile/' 
+     deleteApi = '/api/trip/deleteTrip/' editPath='editTrip/'/>
 
   </React.Fragment>
     

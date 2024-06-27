@@ -67,7 +67,7 @@ export default function AddEmployee() {
     }
 
     const handleOnClose = ()=>{
-        navigate('/clients')
+        navigate('/dashbord')
     }
 
   return (

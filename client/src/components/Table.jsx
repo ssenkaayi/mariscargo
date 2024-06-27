@@ -10,7 +10,7 @@ import Dropdown from './Dropdown';
 
 export default function Table(props) {
 
-  const{tableDataApi,tableHeading,title,column2,column3,column4,path,actionPath,deleteApi} = props
+  const{tableDataApi,tableHeading,title,column2,column3,column4,path,actionPath,deleteApi,editPath} = props
 
   const[tableData, updateTableData] = useState([])
   const[error, setError] = useState(null)
@@ -101,6 +101,15 @@ export default function Table(props) {
     // navigate(route)
   }
 
+  const handleEdit = (id)=>{
+
+    const route = editPath + id
+    // console.log(route)
+
+    navigate(route)
+ 
+  }
+
   return (
 
     <div className='grid grid-rows-11 p-2 gap-3 h-full w-full' >
@@ -155,7 +164,7 @@ export default function Table(props) {
 
                     <div className='flex gap-2 text-sm flex-row'>
 
-                      <span className='cursor-pointer bg-green-600 p-2 rounded-lg'>  EDIT</span>
+                      <span onClick={()=>handleEdit(client._id)} className='cursor-pointer bg-green-600 p-2 rounded-lg'>  EDIT</span>
                       <span onClick={()=>handleModify(client._id)} className='cursor-pointer bg-slate-200 p-2 rounded-lg'> MODIFY</span>
                       <span onClick={()=>handleDelete(client._id)} className='cursor-pointer bg-red-600 p-2 rounded-lg'>DELETE</span>
            

@@ -20,11 +20,30 @@ export default function Dashbord() {
           Manage 
         </div>
 
-        <button className='bg-slate-300 rounded-lg p-1 cursor-pointer' onClick={handleCreateEmployee}>
+        <div className='gap-2 flex'>
 
-          ADD EMPLOYEE
+          <button className='bg-slate-300 rounded-lg p-1 cursor-pointer' onClick={handleCreateEmployee}>
 
-        </button>
+            ADD EMPLOYEE
+
+          </button>
+
+          
+          <button className='bg-slate-300 rounded-lg p-1 cursor-pointer' onClick={handleCreateEmployee}>
+
+            EDIT EMPLOYEE
+
+          </button>
+
+          <button className='bg-slate-300 rounded-lg p-1 cursor-pointer' onClick={handleCreateEmployee}>
+
+            EDIT EMPLOYEE
+
+          </button>
+
+        </div>
+
+
           
       </div>
 
