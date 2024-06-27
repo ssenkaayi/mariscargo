@@ -22,9 +22,6 @@ export const createExpense = async(req,res,next)=>{
         const expenseExist = await Expense.findOne({tripRef:req.body.tripRef})
         if(expenseExist) return next(errorHandler(403,"expenses table for this trip exist"))
 
-        // console.log(expenseExist)
-        // await updateExpenses(expenseExist.tripRef)
-
         // registering new client
         const expense = await Expense.create(expenseData)
         if(!expense) return next(errorHandler(400,'not successfull'))
