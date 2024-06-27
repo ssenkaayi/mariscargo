@@ -11,7 +11,8 @@ export default function Expenses() {
     <Table tableDataApi = '/api/expense' 
       tableHeading={expenseTable} column2='ticket_fees' 
       title="Trips" column4='tax' 
-      column3='transport' path='/addTrip' actionPath= '/supplierProfile/' />
+      column3='transport' path='/addTrip' 
+      actionPath= '/supplierProfile/' editPath='/editExpenses/' />
 
   </React.Fragment>
   )

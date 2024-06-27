@@ -1,6 +1,4 @@
 import React from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
 import Table from '../components/Table';
 import {tripTable} from '../data/TableHeading'
 export default function Trip() {

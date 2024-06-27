@@ -10,7 +10,8 @@ export default function Payment() {
 
     <Table tableDataApi = '/api/payment'  tableHeading={paymentTable}
      column2='recieptNo' path='/clients'
-    title="Payments" column3='amount' column4='kg_rate'/>
+    title="Payments" column3='amount' 
+    column4='kg_rate' editPath='/editPayment/'/>
 
   </React.Fragment>
 

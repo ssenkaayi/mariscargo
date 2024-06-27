@@ -122,7 +122,7 @@ export default function TripProfile(props) {
           <ProfileTable tableBody={expenses}
             tableHeading={expenseProfileTable} column2='transport' column1='ticket_fees'
             title="Trips" column4='market_fees' 
-            column3='tax' path='/addTrip' actionPath= '/supplierProfile/'/>
+            column3='tax' path='/addTrip' actionPath= '/supplierProfile/' editPath='/editExpense/'/>
       
         </div>
   

@@ -14,6 +14,7 @@ export default function Table(props) {
 
   const[tableData, updateTableData] = useState([])
   const[error, setError] = useState(null)
+  console.log(editPath)
 
   useEffect(()=>{
 
@@ -103,9 +104,9 @@ export default function Table(props) {
 
   const handleEdit = (id)=>{
 
+    console.log(editPath)
     const route = editPath + id
-    // console.log(route)
-
+    
     navigate(route)
  
   }

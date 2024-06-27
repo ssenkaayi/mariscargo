@@ -10,7 +10,7 @@ export default function Deliveries() {
 
       <Table tableDataApi = '/api/delivery'tableHeading={deliveryTable}
        column2='weight' title="Deliveries" column3='no_pieces' 
-       column4='deliverer' path='/clients' />
+       column4='deliverer' path='/clients' editPath='/editDelivery/'/>
 
     </React.Fragment>
   )
