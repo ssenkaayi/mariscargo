@@ -14,7 +14,6 @@ export default function Table(props) {
 
   const[tableData, updateTableData] = useState([])
   const[error, setError] = useState(null)
-  console.log(editPath)
 
   useEffect(()=>{
 
@@ -37,7 +36,7 @@ export default function Table(props) {
 
         window.localStorage.clear()
         window.location.href = './login'
-        console.log(data.message)
+        // console.log(data.message)
         alert('token expired login again')
 
         return
@@ -72,7 +71,7 @@ export default function Table(props) {
   const handleDelete = async(id)=>{
 
     const route = deleteApi + id
-    console.log(route)
+    // console.log(route)
 
     try{
   
