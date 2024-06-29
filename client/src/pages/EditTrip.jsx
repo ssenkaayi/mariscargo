@@ -52,8 +52,8 @@ export default function EditTrip() {
       //if response is True, register and navigate to the sign in page
       setLoading(false);
       setError(null)
-      alert('data updated successfully')
       handleOnClose()
+      alert('data updated successfully')
 
     }catch(error){
       setLoading(false);

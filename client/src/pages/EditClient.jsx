@@ -65,12 +65,11 @@ export default function EditClient() {
 
   //linking our api to send req to the server
   const handleSubmit = async(e)=>{
-    console.log(formData)
+    // console.log(formData)
     setLoading(true);
     e.preventDefault();
     try{
       //making a request to the server
-      console.log(formData)
 
       const res = await fetch(`/api/client/${client_id}`,{
         method:'PUT',
