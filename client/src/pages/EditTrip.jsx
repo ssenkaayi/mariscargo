@@ -32,7 +32,7 @@ export default function EditTrip() {
       //making a request to the server
 
       const res = await fetch(`/api/trip/updateTrip/${trip_id}`,{
-        method:'Put',
+        method:'PUT',
         headers:{'content-type':'application/json',},
         body:JSON.stringify(formData)
       }
@@ -93,7 +93,7 @@ export default function EditTrip() {
       }
 
       setFormData(data.trip)
-      alert('data updated successfully')
+      // alert('data updated successfully')
 
     }catch(error){
       console.log(error)
