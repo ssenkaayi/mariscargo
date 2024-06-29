@@ -21,17 +21,16 @@ export default function EditTrip() {
       [e.target.id]:e.target.value,
     });
 
-  //   console.log({formData})
   };
 
   //linking our api to send req to the server
   const handleSubmit = async(e)=>{
-  //   console.log({formData})
+
     setLoading(true);
     e.preventDefault();
     try{
       //making a request to the server
-      console.log(formData)
+
       const res = await fetch(`/api/trip/updateTrip/${trip_id}`,{
         method:'Put',
         headers:{'content-type':'application/json',},
@@ -46,14 +45,14 @@ export default function EditTrip() {
       if(data.success===false){
         setLoading(false);
         setError(data.message);
-        console.log(data.message)
+        // console.log(data.message)
         return
       }
 
       //if response is True, register and navigate to the sign in page
       setLoading(false);
       setError(null)
-      // navigate('/')
+      alert('data updated successfully')
       handleOnClose()
 
     }catch(error){
@@ -94,12 +93,13 @@ export default function EditTrip() {
       }
 
       setFormData(data.trip)
+      alert('data updated successfully')
 
     }catch(error){
       console.log(error)
     }
 
-  }
+  } 
 
     const handleOnClose = ()=>{
         navigate('/')
