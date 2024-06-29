@@ -50,7 +50,6 @@ export const getTrip = async(req,res,next)=>{
         if(!expense) return next(errorHandler(400,"trip with id is not found"))
 
         const tripData = {}
-
         res.status(200).json({...tripData,trip,suppliers,expense})
 
     }catch(error){
@@ -62,12 +61,14 @@ export const getTrip = async(req,res,next)=>{
 export const updateTrip = async(req,res,next)=>{
 
     try{
-        // verifying trip req.body to ensure we are passing the right data to our database.
-        const {error} = tripValidation(req.body)
-        if(error) return res.status(400).json(error.details[0].message)
 
-        const updatedTrip = await Trip.findByIdAndUpdate({_id:req.params.id},req.body,{new:true})
-        if(!updatedTrip) return res.status(400).json({"status":"updating trip failed!, trip with id does not exist"})
+        const {name,trip_payment,date} =req.body
+        // verifying trip req.body to ensure we are passing the right data to our database.
+        const {error} = tripValidation({name,trip_payment,date})
+        if(error) return next(errorHandler(400,error.details[0].message))
+
+        const updatedTrip = await Trip.findByIdAndUpdate({_id:req.params.id},{$set:{name,trip_payment,date}},{new:true})
+        if(!updatedTrip) return next(errorHandler(400,"updating trip failed!"))
 
         res.status(200).json(updatedTrip)
 

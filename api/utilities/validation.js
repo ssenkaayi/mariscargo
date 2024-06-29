@@ -129,11 +129,11 @@ export const editClientValidation = (data)=>{
 
         name:Joi.string().min(3).max(20).required(),
         phone:Joi.string().min(10).max(20).required(),
-        // supplierRef:Joi.string().min(3).max(40).required(),
-        // _id:Joi.string().min(3).max(40).required(),
+        supplierRef:Joi.string().min(3).max(40).required(),
+        _id:Joi.string().min(3).max(40).required(),
         weight:Joi.number().min(1).required(),
         no_pieces:Joi.number().min(1).required(),
-        // date:Joi.date()
+        date:Joi.date()
       
     })
 

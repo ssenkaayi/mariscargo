@@ -43,11 +43,7 @@ export default function EditClient() {
 
       if(data.success===false){
 
-        window.localStorage.clear()
-        window.location.href = './login'
-        // console.log(data.message)
-        alert('token expired login again')
-
+        console.log(data.message)
         return
       }
 
@@ -98,6 +94,7 @@ export default function EditClient() {
       setLoading(false);
       setError(null)
       // navigate('/')
+      alert('data updated successfully')
       handleOnClose()
 
     }catch(error){

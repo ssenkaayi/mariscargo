@@ -1,7 +1,7 @@
 
 import Client from '../modules/clientModule.js'
 import Supplier from '../modules/supplierModule.js'
-import {editClientValidation, clientValidation} from '../utilities/validation.js'
+import {clientValidation,editClientValidation} from '../utilities/validation.js'
 import { deleteDeliveriesInClient, deletePaymentsInClient, updateSupplierWeight} from '../utilities/updateWeight.js'
 import { isValidObjectId } from "mongoose";
 import { Delivery } from '../modules/deliveryModule.js';
@@ -57,12 +57,12 @@ export const getClients = async(req,res,next)=>{
 export const updateClient = async(req,res,next)=>{
 
     try{
-        const{name,weight,no_pieces,phone} = req.body
+        const{name,weight,no_pieces,phone,supplierRef} = req.body
 
         const isValidId = isValidObjectId(req.params.id)
         if(!isValidId) return next(errorHandler(400,"provided invalid params id"))
         // console.log(req.body)
-        const {error} = editClientValidation({name,weight,no_pieces,phone})
+        const {error} = clientValidation({name,weight,no_pieces,phone,supplierRef})
         if(error) return next(errorHandler(400,error.details[0].message))
         // console.log(req.body)
 
@@ -72,7 +72,7 @@ export const updateClient = async(req,res,next)=>{
         const updateClient = await Client.findByIdAndUpdate({_id:req.params.id},{$set:{name,weight,no_pieces,phone}},{new:true})
         if(!updateClient) return next(errorHandler(400,"client does not exist"))
 
-        // console.log(req.body)
+        console.log(updateClient)
 
         // update supplier and trip weight
         const updateWeight = updateSupplierWeight(req.body.supplierRef)

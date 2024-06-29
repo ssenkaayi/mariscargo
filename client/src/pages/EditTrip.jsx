@@ -1,62 +1,105 @@
 import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useParams} from 'react-router-dom'
 // import { useSelector } from 'react-redux';
 
 export default function EditTrip() {
 
-    const [formData,setFormData] = useState({"name":"","date":"","trip_payment":""});
-    const [loading,setLoading] = useState(false);
-    const [error,setError] = useState(null);
-    // const {currentEmploye} = useSelector((state)=>state.employe)
-    const navigate = useNavigate();
-  
-    const handleChange = (e)=>{
-      setFormData({
-        ...formData,
-        [e.target.id]:e.target.value,
-      });
+  const [formData,setFormData] = useState({name:"",date:"",trip_payment:""});
+  const [loading,setLoading] = useState(false);
+  const [error,setError] = useState(null);
+  const params = useParams() 
+  const trip_id = params.id
+  // const {currentEmploye} = useSelector((state)=>state.employe)
+  const navigate = useNavigate();
 
-    //   console.log({formData})
-    };
-  
-    //linking our api to send req to the server
-    const handleSubmit = async(e)=>{
-    //   console.log({formData})
-      setLoading(true);
-      e.preventDefault();
-      try{
-        //making a request to the server
-        // console.log(formData)
-        const res = await fetch('/api/trip/create',{
-          method:'POSt',
-          headers:{'content-type':'application/json',},
-          body:JSON.stringify(formData)
-        }
-        );
-        //getting response from the server
-        const data =  await res.json();
-        // console.log(data)
-  
-        //if response is false, show the error message to the client
-        if(data.success===false){
-          setLoading(false);
-          setError(data.message);
-          return
-        }
-  
-        //if response is True, register and navigate to the sign in page
+  const handleChange = (e)=>{
+    setFormData({
+      ...formData,
+      [e.target.id]:e.target.value,
+    });
+
+  //   console.log({formData})
+  };
+
+  //linking our api to send req to the server
+  const handleSubmit = async(e)=>{
+  //   console.log({formData})
+    setLoading(true);
+    e.preventDefault();
+    try{
+      //making a request to the server
+      console.log(formData)
+      const res = await fetch(`/api/trip/updateTrip/${trip_id}`,{
+        method:'Put',
+        headers:{'content-type':'application/json',},
+        body:JSON.stringify(formData)
+      }
+      );
+      //getting response from the server
+      const data =  await res.json();
+      // console.log(data)
+
+      //if response is false, show the error message to the client
+      if(data.success===false){
         setLoading(false);
-        setError(null)
-        // navigate('/')
-        handleOnClose()
+        setError(data.message);
+        console.log(data.message)
+        return
+      }
+
+      //if response is True, register and navigate to the sign in page
+      setLoading(false);
+      setError(null)
+      // navigate('/')
+      handleOnClose()
+
+    }catch(error){
+      setLoading(false);
+      setError(error.message);
   
-      }catch(error){
-        setLoading(false);
-        setError(error.message);
+    } 
+  }
+
+  useEffect(()=>{
+
+    fetchClient()
+
+  },[])
+
+  const fetchClient = async()=>{
+
+    try{
+
+      const res = await fetch(`/api/trip/getTrip/${trip_id}`,{
+        method:'GET',
+      })
   
-      } 
+      const data = await res.json()
+      // console.log(data.getClient)
+
+      if(data.success===false){
+        console.log(data.message)
+        return
+      }
+
+      if(data.message === 'token expired'){
+        
+        window.localStorage.clear()
+        window.location.href = './login'
+        alert('token expired login again')
+
+      }
+
+      setFormData(data.trip)
+
+    }catch(error){
+      console.log(error)
     }
+
+  }
 
     const handleOnClose = ()=>{
         navigate('/')
@@ -72,18 +115,18 @@ export default function EditTrip() {
 
               <div className='flex flex-col gap-4'>
 
-                    <label className='mb-4  text-1xl font-semibold'>Date</label>
-                    <input type="Date" placeholder="sky team name" id='date' className='border p-3 rounded-lg'
-                    required onChange={handleChange}
+                  <label className='mb-4  text-1xl font-semibold'>Date</label>
+                  <input type="Date" placeholder="sky team name" id='date' className='border p-3 rounded-lg'
+                  onChange={handleChange}
                   />
 
                   <label className='mb-4 text-1xl font-semibold'>Trip name</label>
-                  <input type="text" placeholder="sky team name" id='name' className='border p-3 rounded-lg'
+                  <input type="text" placeholder="sky team name" id='name' value={formData.name} className='border p-3 rounded-lg'
                   required onChange={handleChange}
                   />
 
                   <label className='mb-4 text-1xl font-semibold'>Trip payment</label>
-                    <input type="Number" placeholder="Trip Payment" id='trip_payment' className='border p-3 rounded-lg'
+                    <input type="Number" placeholder="Trip Payment" id='trip_payment' value={formData.trip_payment} className='border p-3 rounded-lg'
                     required onChange={handleChange}
                   />
 
