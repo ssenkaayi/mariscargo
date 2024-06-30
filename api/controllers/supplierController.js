@@ -3,7 +3,7 @@ import Supplier from "../modules/supplierModule.js"
 import { supplierValidation } from "../utilities/validation.js"
 import Trip from "../modules/tripModule.js"
 import Client from "../modules/clientModule.js"
-import { deleteClientsInSupplier, updateTripWeight } from "../utilities/updateWeight.js"
+import { deleteClientsInSupplier, updateSupplierName, updateTripWeight } from "../utilities/updateWeight.js"
 import { errorHandler } from "../utilities/internalErrorHandler.js"
 
 export const createSupplier = async(req,res,next)=>{

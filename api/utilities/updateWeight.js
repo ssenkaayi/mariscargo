@@ -216,3 +216,16 @@ export const deleteExpenseInTrip = async(tripRef)=>{
    
 }
 
+export const updateSupplierName = async(tripRef,name)=>{
+
+    const suppliers = await Supplier.find({tripRef})
+    // if(!expenses) return res.status(400).json(Error)
+
+    for (let supplier = 0; supplier<suppliers.length;supplier++ ){
+
+        const updateSupplierTripName = await Supplier.findByIdAndUpdate(suppliers[supplier]._id,{$set:{tripName:name}},{new:true})
+    }
+   
+}
+
+

@@ -1,6 +1,6 @@
 import Trip from "../modules/tripModule.js"
 import { tripValidation } from "../utilities/validation.js"
-import { deleteExpenseInTrip, deleteSuppliersInTrip } from "../utilities/updateWeight.js"
+import { deleteExpenseInTrip, deleteSuppliersInTrip ,updateSupplierName} from "../utilities/updateWeight.js"
 import Supplier from "../modules/supplierModule.js"
 import Expense from "../modules/expense.js"
 import { errorHandler } from "../utilities/internalErrorHandler.js"
@@ -61,14 +61,17 @@ export const getTrip = async(req,res,next)=>{
 export const updateTrip = async(req,res,next)=>{
 
     try{
+        console.log(req.body)
 
-        const {name,trip_payment,date} =req.body
+        const {_id,name,trip_payment,date} =req.body
         // verifying trip req.body to ensure we are passing the right data to our database.
         const {error} = tripValidation({name,trip_payment,date})
         if(error) return next(errorHandler(400,error.details[0].message))
 
         const updatedTrip = await Trip.findByIdAndUpdate({_id:req.params.id},{$set:{name,trip_payment,date}},{new:true})
         if(!updatedTrip) return next(errorHandler(400,"updating trip failed!"))
+
+        await updateSupplierName(_id,name)
 
         res.status(200).json(updatedTrip)
 

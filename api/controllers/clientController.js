@@ -72,7 +72,7 @@ export const updateClient = async(req,res,next)=>{
         const updateClient = await Client.findByIdAndUpdate({_id:req.params.id},{$set:{name,weight,no_pieces,phone}},{new:true})
         if(!updateClient) return next(errorHandler(400,"client does not exist"))
 
-        console.log(updateClient)
+        // console.log(updateClient)
 
         // update supplier and trip weight
         const updateWeight = updateSupplierWeight(req.body.supplierRef)
