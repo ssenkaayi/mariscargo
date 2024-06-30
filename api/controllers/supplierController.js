@@ -35,6 +35,7 @@ export const createSupplier = async(req,res,next)=>{
 export const deleteSupplier = async(req,res,next)=>{
 
     try{
+      
         const supplierExist = await Supplier.findById(req.params.id)
         if(!supplierExist) return next(errorHandler(400,"supplier with given id does not exist"))
 
@@ -92,15 +93,17 @@ export const getSupplier = async(req,res)=>{
 
 export const updateSupplier = async(req,res,next)=>{
 
-    try{
+    try{console.log(req.body)
+        const {name,tripRef,tripName,date} = req.body
+
         // verifying supplier req.body to ensure we are passing the right data to our database.
-        const {error} = supplierValidation(req.body)
+        const {error} = supplierValidation({name,tripRef,tripName,date})
         if(error) return next(errorHandler(400,error.details[0].message))
 
         const tripExist = await Trip.findById(req.body.tripRef)
         if(!tripExist) return next(errorHandler(400,"failed fetching trip with provived tripRef"))
 
-        const supplier = await Supplier.findByIdAndUpdate({_id:req.params.id},req.body,{new:true})
+        const supplier = await Supplier.findByIdAndUpdate({_id:req.params.id},{$set:{name}},{new:true})
         if(!supplier) return next(errorHandler(400,"failed fetching updatind supplier"))
 
         res.status(200).json(supplier)

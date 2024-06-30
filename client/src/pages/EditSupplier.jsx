@@ -2,6 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams} from 'react-router-dom'
+import { useEffect } from 'react';
 // import { useSelector } from 'react-redux';
 
 export default function EditSupplier() {
@@ -10,7 +11,7 @@ export default function EditSupplier() {
     const [loading,setLoading] = useState(false);
     const [error,setError] = useState(null);
     const params = useParams() 
-    const trip_id = params.id
+    const supplier_id = params.id
     // const {currentEmploye} = useSelector((state)=>state.employe)
     const navigate = useNavigate();
   
@@ -20,21 +21,21 @@ export default function EditSupplier() {
         [e.target.id]:e.target.value,
       });
 
-    //   console.log({formData})
+     
     };
   
     //linking our api to send req to the server
     const handleSubmit = async(e)=>{
-    //   console.log({formData})
+      console.log({formData})
       setLoading(true);
       e.preventDefault();
+
       try{
         //making a request to the server
-        // console.log(formData)
-        const res = await fetch('/api/supplier',{
-          method:'POST',
+        const res = await fetch(`/api/supplier/${supplier_id}`,{
+          method:'PUT',
           headers:{'content-type':'application/json',},
-          body:JSON.stringify({...formData,tripRef:trip_id})
+          body:JSON.stringify(formData)
         }
         );
         //getting response from the server
@@ -51,8 +52,8 @@ export default function EditSupplier() {
         //if response is True, register and navigate to the sign in page
         setLoading(false);
         setError(null)
-        // navigate('/')
         handleOnClose()
+        alert('data updated successfully')
   
       }catch(error){
         setLoading(false);
@@ -60,9 +61,52 @@ export default function EditSupplier() {
   
       } 
     }
+    useEffect(()=>{
 
+      fetchClient()
+  
+    },[])
+  
+    const fetchClient = async()=>{
+      
+      setLoading(true);
+  
+      try{
+  
+        const res = await fetch(`/api/supplier/${supplier_id}`,{
+          method:'GET',
+        })
+    
+        const data = await res.json()
+        console.log(data.supplier)
+  
+        if(data.success===false){
+          console.log(data.message)
+          return
+        }
+  
+        if(data.message === 'token expired'){
+          
+          window.localStorage.clear()
+          window.location.href = './login'
+          alert('token expired login again')
+  
+        }
+  
+        setFormData(data.supplier)
+        setLoading(false);
+        setError(error.message);
+    
+  
+      }catch(error){
+        // console.log(error)
+        setLoading(false);
+        // setError(error.message);
+      }
+  
+    } 
     const handleOnClose = ()=>{
-        navigate('/suppliers')
+      navigate('/suppliers')
     }
 
   return (
@@ -76,7 +120,7 @@ export default function EditSupplier() {
               <div className='flex flex-col gap-4'>
 
                   <label className='mb-4 text-1xl font-semibold'>Supplier name</label>
-                  <input type="text" placeholder="sky team name" id='name' className='border p-3 rounded-lg'
+                  <input type="text" placeholder="sky team name" id='name' value={formData.name} className='border p-3 rounded-lg'
                   required onChange={handleChange}
                   />
 
