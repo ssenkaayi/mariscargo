@@ -53,7 +53,7 @@ export default function EditPayment() {
         //if response is True, register and navigate to the sign in page
         setLoading(false);
         setError(null)
-        // navigate('/')
+        alert('data updated successfully')
         handleOnClose()
   
       }catch(error){
