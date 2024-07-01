@@ -6,7 +6,7 @@ import { RiSecurePaymentLine } from "react-icons/ri";
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import Dropdown from './Dropdown';
+import DeleteModel from './DeleteModel';
 
 export default function Table(props) {
 
@@ -14,6 +14,7 @@ export default function Table(props) {
 
   const[tableData, updateTableData] = useState([])
   const[error, setError] = useState(null)
+  const[showDeleteModel,setShowDeleteModel]= useState(false)
 
   useEffect(()=>{
 
@@ -68,35 +69,42 @@ export default function Table(props) {
     navigate(route)
   }
 
+  const handleCloseDeleteModel = ()=>{
+
+    setShowDeleteModel(false)
+
+  }
+
   const handleDelete = async(id)=>{
 
     const route = deleteApi + id
+    setShowDeleteModel(true)
     // console.log(route)
 
-    try{
+    // try{
   
-      const res = await fetch(route,{
-        method:"DELETE",
-      })
+    //   const res = await fetch(route,{
+    //     method:"DELETE",
+    //   })
   
-      const data = await res.json();
+    //   const data = await res.json();
   
-      console.log(data)
+    //   console.log(data)
   
-      if(data.success===false){
-        alert('deleting failed')
-        return console.log(data.message)
-        // setError(data.message)
-        // setLoading(false)
-      }
+    //   if(data.success===false){
+    //     alert('deleting failed')
+    //     return console.log(data.message)
+    //     // setError(data.message)
+    //     // setLoading(false)
+    //   }
        
-      alert('data deleted successfully')
-      updateTableData(tableData.filter((client)=>client._id!==id))
+    //   alert('data deleted successfully')
+    //   updateTableData(tableData.filter((client)=>client._id!==id))
 
-    }catch(error){
-      console.log(error)
-      // setError(error.message)
-    }
+    // }catch(error){
+    //   console.log(error)
+    //   // setError(error.message)
+    // }
 
     // navigate(route)
   }
@@ -113,6 +121,8 @@ export default function Table(props) {
   return (
 
     <div className='grid grid-rows-11 p-2 gap-3 h-full w-full' >
+      
+      < DeleteModel visible={showDeleteModel} onClose={handleCloseDeleteModel} />
 
       <div className='centered text-2xl row-span-1 bg-white p-2 rounded-lg flex justify-between items-center'>
         
