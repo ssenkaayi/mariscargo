@@ -216,14 +216,28 @@ export const deleteExpenseInTrip = async(tripRef)=>{
    
 }
 
-export const updateSupplierName = async(tripRef,name)=>{
+export const updateSupplierName = async(tripRef,name,date)=>{
 
     const suppliers = await Supplier.find({tripRef})
     // if(!expenses) return res.status(400).json(Error)
 
     for (let supplier = 0; supplier<suppliers.length;supplier++ ){
 
-        const updateSupplierTripName = await Supplier.findByIdAndUpdate(suppliers[supplier]._id,{$set:{tripName:name}},{new:true})
+        updateClientDate(suppliers[supplier]._id,name,date)
+
+        await Supplier.findByIdAndUpdate(suppliers[supplier]._id,{$set:{tripName:name,date}},{new:true})
+    }
+   
+}
+
+export const updateClientDate = async(supplierRef,name,date)=>{
+
+    const clients = await Client.find({supplierRef})
+    // if(!expenses) return res.status(400).json(Error)
+
+    for (let client = 0; client<clients.length;client++ ){
+
+        await Client.findByIdAndUpdate(clients[client]._id,{$set:{date}},{new:true})
     }
    
 }

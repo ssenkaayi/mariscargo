@@ -61,7 +61,7 @@ export const getTrip = async(req,res,next)=>{
 export const updateTrip = async(req,res,next)=>{
 
     try{
-        console.log(req.body)
+        // console.log(req.body)
 
         const {_id,name,trip_payment,date} =req.body
         // verifying trip req.body to ensure we are passing the right data to our database.
@@ -71,7 +71,7 @@ export const updateTrip = async(req,res,next)=>{
         const updatedTrip = await Trip.findByIdAndUpdate({_id:req.params.id},{$set:{name,trip_payment,date}},{new:true})
         if(!updatedTrip) return next(errorHandler(400,"updating trip failed!"))
 
-        await updateSupplierName(_id,name)
+        await updateSupplierName(_id,name,date)
 
         res.status(200).json(updatedTrip)
 
