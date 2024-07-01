@@ -15,6 +15,8 @@ export default function Table(props) {
   const[tableData, updateTableData] = useState([])
   const[error, setError] = useState(null)
   const[showDeleteModel,setShowDeleteModel]= useState(false)
+  const[deleteDataApi,setDeleteDataApi]=useState('')
+  const[id,setId] = useState('')
 
   useEffect(()=>{
 
@@ -75,38 +77,48 @@ export default function Table(props) {
 
   }
 
+  const comfirmDelete = async()=>{
+
+    console.log(deleteDataApi)
+
+      try{
+  
+      const res = await fetch(deleteDataApi,{
+        method:"DELETE",
+      })
+  
+      const data = await res.json();
+  
+      // console.log(data)
+  
+      if(data.success===false){
+        alert('deleting failed')
+        return console.log(data.message)
+        // setError(data.message)
+        // setLoading(false)
+      }
+       
+      alert('data deleted successfully')
+      setShowDeleteModel(false)
+      updateTableData((prev)=>prev.filter((client)=>client._id!==id))
+
+    }catch(error){
+      console.log(error)
+      // setError(error.message)
+    }
+
+    navigate(path)
+
+  }
+
   const handleDelete = async(id)=>{
 
     const route = deleteApi + id
-    setShowDeleteModel(true)
+    setId(id)
     // console.log(route)
-
-    // try{
-  
-    //   const res = await fetch(route,{
-    //     method:"DELETE",
-    //   })
-  
-    //   const data = await res.json();
-  
-    //   console.log(data)
-  
-    //   if(data.success===false){
-    //     alert('deleting failed')
-    //     return console.log(data.message)
-    //     // setError(data.message)
-    //     // setLoading(false)
-    //   }
-       
-    //   alert('data deleted successfully')
-    //   updateTableData(tableData.filter((client)=>client._id!==id))
-
-    // }catch(error){
-    //   console.log(error)
-    //   // setError(error.message)
-    // }
-
-    // navigate(route)
+    setDeleteDataApi(route)
+    setShowDeleteModel(true)
+ 
   }
 
   const handleEdit = (id)=>{
@@ -122,7 +134,7 @@ export default function Table(props) {
 
     <div className='grid grid-rows-11 p-2 gap-3 h-full w-full' >
       
-      < DeleteModel visible={showDeleteModel} onClose={handleCloseDeleteModel} />
+      < DeleteModel visible={showDeleteModel} comfirmDelete={comfirmDelete} onClose={handleCloseDeleteModel} />
 
       <div className='centered text-2xl row-span-1 bg-white p-2 rounded-lg flex justify-between items-center'>
         
@@ -137,7 +149,7 @@ export default function Table(props) {
 
       <div className='centered text-xl row-span-9 bg-white p-2 rounded-lg'>
 
-        <table className='w-full table-auto'>
+        <table className='w-full table-auto striped bordered hover'>
 
           <thead className='bg-slate-300'>
 

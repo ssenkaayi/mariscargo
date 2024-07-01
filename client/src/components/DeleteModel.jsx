@@ -1,8 +1,17 @@
 import React from 'react'
 
-export default function DeleteModel({visible , onClose}) {
+export default function DeleteModel({visible ,onClose,comfirmDelete}) {
     
-   const handleOnClose = ()=> onClose()
+   const handleOnClose = ()=>{ 
+    
+    onClose()
+  
+  }
+
+  const handleDeleteRecord=()=>{
+
+    comfirmDelete()
+  }
 
    if(!visible) return null;
 
@@ -20,7 +29,7 @@ export default function DeleteModel({visible , onClose}) {
         type="button"> no
         </button>
 
-        <button className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+        <button onClick={handleDeleteRecord} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
         > yes
         </button>
 
