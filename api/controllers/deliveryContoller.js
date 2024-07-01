@@ -40,8 +40,9 @@ export const createDelivery = async(req,res,next)=>{
 export const updateDelivery = async(req,res,next)=>{
 
     try{
+        const{weight,no_pieces,deliverer,name,clientRef,date} = req.body
         // verifying client req.body to ensure we are passing the right data to our database.
-        const {error} = deliveryValidation(req.body)
+        const {error} = deliveryValidation({weight,no_pieces,deliverer,name,clientRef,date})
         if(error) return next(errorHandler(400,error.details[0].message))
 
         const delivery = await Delivery.findById(req.params.id)
@@ -58,7 +59,7 @@ export const updateDelivery = async(req,res,next)=>{
 
         if(newTotalDelivery>client.weight) return next(errorHandler(400,`weight delivered cannot execeed available ${client.weight} weight`))
 
-        const updatedDelivery = await Delivery.findByIdAndUpdate({_id:req.params.id},req.body,{new:true})
+        const updatedDelivery = await Delivery.findByIdAndUpdate({_id:req.params.id},{$set:{weight,no_pieces,deliverer}},{new:true})
         if(!updateDelivery) return next(errorHandler(400,"failed to update delivery"))
 
         await updateDeliveryWeight(delivery.clientRef)

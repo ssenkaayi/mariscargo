@@ -61,6 +61,7 @@ export default function EditSupplier() {
   
       } 
     }
+
     useEffect(()=>{
 
       fetchClient()
@@ -78,9 +79,11 @@ export default function EditSupplier() {
         })
     
         const data = await res.json()
-        console.log(data.supplier)
+        // console.log(data.supplier)
   
         if(data.success===false){
+          setLoading(false);
+          setError(data.message);
           console.log(data.message)
           return
         }
@@ -105,6 +108,7 @@ export default function EditSupplier() {
       }
   
     } 
+
     const handleOnClose = ()=>{
       navigate('/suppliers')
     }

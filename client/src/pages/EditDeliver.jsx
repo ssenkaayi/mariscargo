@@ -2,15 +2,16 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams} from 'react-router-dom'
+import { useEffect } from 'react';
 // import { useSelector } from 'react-redux';
 
 export default function EditDeliveries() {
 
-    const [formData,setFormData] = useState({});
+    const [formData,setFormData] = useState({weight:"",no_pieces:0,deliverer:""});
     const [loading,setLoading] = useState(false);
     const [error,setError] = useState(null);
     const params = useParams() 
-    const supplier_id = params.id
+    const deliveries_id = params.id
     // const {currentEmploye} = useSelector((state)=>state.employe)
     const navigate = useNavigate();
   
@@ -31,16 +32,16 @@ export default function EditDeliveries() {
         //making a request to the server
         console.log(formData)
 
-        const res = await fetch('/api/delivery/',{
-          method:'POST',
+        const res = await fetch(`/api/delivery/${deliveries_id}`,{
+          method:'PUT',
           headers:{'content-type':'application/json',},
-          body:JSON.stringify({...formData,clientRef:supplier_id})
+          body:JSON.stringify(formData)
           
         }
         );
         //getting response from the server
         const data =  await res.json();
-        // console.log(data)
+        console.log(data)
   
         //if response is false, show the error message to the client
         if(data.success===false){
@@ -62,6 +63,53 @@ export default function EditDeliveries() {
       } 
     }
 
+    useEffect(()=>{
+
+      fetchDeliveries()
+  
+    },[])
+  
+    const fetchDeliveries = async()=>{
+      
+      setLoading(true);
+  
+      try{
+  
+        const res = await fetch(`/api/delivery/${deliveries_id}`,{
+          method:'GET',
+        })
+    
+        const data = await res.json()
+        console.log(data)
+  
+        if(data.success===false){
+          setLoading(false);
+          setError(data.message);
+          console.log(data.message)
+          return
+        }
+  
+        if(data.message === 'token expired'){
+          
+          window.localStorage.clear()
+          window.location.href = './login'
+          alert('token expired login again')
+  
+        }
+  
+        setFormData(data)
+        setLoading(false);
+        setError(error.message);
+    
+  
+      }catch(error){
+        // console.log(error)
+        setLoading(false);
+        // setError(error.message);
+      }
+  
+    } 
+
     const handleOnClose = ()=>{
         navigate('/clients')
     }
@@ -76,23 +124,23 @@ export default function EditDeliveries() {
 
               <div className='flex flex-col gap-4'>
 
-                <label className='mb-4 text-1xl font-semibold'>Date</label>
+                {/* <label className='mb-4 text-1xl font-semibold'>Date</label>
                 <input type="date" placeholder="date" id='date' className='border p-3 rounded-lg'
                 required onChange={handleChange}
-                />
+                /> */}
 
                 <label className='mb-4 text-1xl font-semibold'>Weight</label>
-                <input type="text" placeholder="weight" id='weight' className='border p-3 rounded-lg'
+                <input type="text" placeholder="weight" id='weight' value={formData.weight} className='border p-3 rounded-lg'
                 required onChange={handleChange}
                 />
 
                 <label className='mb-4 text-1xl font-semibold'>No Pieces</label>
-                <input type="text" placeholder="No Pieces" id='no_pieces' className='border p-3 rounded-lg'
+                <input type="text" placeholder="No Pieces" id='no_pieces' value={formData.no_pieces} className='border p-3 rounded-lg'
                 required onChange={handleChange}
                 />
 
                 <label className='mb-4 text-1xl font-semibold'>Deliverer name</label>
-                <input type="text" placeholder="Deliverer name" id='deliverer' className='border p-3 rounded-lg'
+                <input type="text" placeholder="Deliverer name" id='deliverer' value={formData.deliverer} className='border p-3 rounded-lg'
                 required onChange={handleChange}
                 />
 
