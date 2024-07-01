@@ -103,7 +103,7 @@ export default function Table(props) {
 
   const handleEdit = (id)=>{
 
-    console.log(editPath)
+    // console.log(editPath)
     const route = editPath + id
     
     navigate(route)

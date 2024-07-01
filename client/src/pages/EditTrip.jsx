@@ -116,8 +116,8 @@ export default function EditTrip() {
               <div className='flex flex-col gap-4'>
 
                 <label className='mb-4  text-1xl font-semibold'>Date</label>
-                <input type="Date" placeholder="sky team name" id='date' className='border p-3 rounded-lg'
-                onChange={handleChange}
+                <input type="Date" placeholder="yyyy-mm-dd"  id='date' value={formData.date.split("T")[0]} className='border p-3 rounded-lg'
+                required onChange={handleChange}
                 />
 
                 <label className='mb-4 text-1xl font-semibold'>Trip name</label>

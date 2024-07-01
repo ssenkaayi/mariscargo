@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 export default function EditDeliveries() {
 
-    const [formData,setFormData] = useState({weight:"",no_pieces:0,deliverer:""});
+    const [formData,setFormData] = useState({date:"",weight:"",no_pieces:0,deliverer:""});
     const [loading,setLoading] = useState(false);
     const [error,setError] = useState(null);
     const params = useParams() 
@@ -30,7 +30,7 @@ export default function EditDeliveries() {
       e.preventDefault();
       try{
         //making a request to the server
-        console.log(formData)
+        // console.log(formData)
 
         const res = await fetch(`/api/delivery/${deliveries_id}`,{
           method:'PUT',
@@ -124,10 +124,10 @@ export default function EditDeliveries() {
 
               <div className='flex flex-col gap-4'>
 
-                {/* <label className='mb-4 text-1xl font-semibold'>Date</label>
+                <label className='mb-4 text-1xl font-semibold'>Date</label>
                 <input type="date" placeholder="date" id='date' className='border p-3 rounded-lg'
-                required onChange={handleChange}
-                /> */}
+                required onChange={handleChange} value={formData.date.split("T")[0]}
+                />
 
                 <label className='mb-4 text-1xl font-semibold'>Weight</label>
                 <input type="text" placeholder="weight" id='weight' value={formData.weight} className='border p-3 rounded-lg'

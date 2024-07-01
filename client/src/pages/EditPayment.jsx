@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 export default function EditPayment() {
 
-    const [formData,setFormData] = useState({amount:'',kg_rate:0,recieptNo:""});
+    const [formData,setFormData] = useState({date:"",amount:'',kg_rate:0,recieptNo:""});
     const [loading,setLoading] = useState(false);
     const [error,setError] = useState(null);
     const params = useParams() 
@@ -30,7 +30,7 @@ export default function EditPayment() {
       e.preventDefault();
       try{
         //making a request to the server
-        console.log(formData)
+        // console.log(formData)
 
         const res = await fetch(`/api/payment/${payment_id}`,{
           method:'PUT',
@@ -124,10 +124,10 @@ export default function EditPayment() {
 
               <div className='flex flex-col gap-4'>
 
-                  {/* <label className='mb-4 text-1xl font-semibold'>Date</label>
+                  <label className='mb-4 text-1xl font-semibold'>Date</label>
                   <input type="date" placeholder="sky team name" id='date' className='border p-3 rounded-lg'
-                  required onChange={handleChange}
-                  /> */}
+                  required onChange={handleChange} value={formData.date.split("T")[0]}
+                  />
 
                   <label className='mb-4 text-1xl font-semibold'>Amount</label>
                   <input type="Number" placeholder="sky team name" id='amount' value={formData.amount} className='border p-3 rounded-lg'
