@@ -63,16 +63,18 @@ export const getPayment = async(req,res,next)=>{
 export const updatePayment = async(req,res,next)=>{
 
     try{
+
+        const{amount,kg_rate,recieptNo,clientRef,date} = req.body
         const isValidId = isValidObjectId(req.params.id)
         if(!isValidId) return next(errorHandler(400,"invalid id"))
 
-        const {error} = paymentValidation(req.body)
+        const {error} = paymentValidation({amount,kg_rate,recieptNo,clientRef,date})
         if(error) return next(errorHandler(400,error.details[0].message))
 
         const clientExist = await Client.findById(req.body.clientRef)
         if(!clientExist) return next(errorHandler(400,"client with clientRef does not exist"))
 
-        const updatedPayment = await Payment.findByIdAndUpdate({_id:req.params.id},req.body,{new:true})
+        const updatedPayment = await Payment.findByIdAndUpdate({_id:req.params.id},{$set:{amount,kg_rate,recieptNo}},{new:true})
         if(!updatedPayment) return next(errorHandler(400,"failed to update payment"))
 
         await updatePayments(req.body.clientRef)
