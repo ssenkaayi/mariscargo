@@ -105,6 +105,8 @@ export const deleteTrip = async(req,res,next)=>{
 export const findTripsByDate = async(req,res,next)=>{
     
     try{
+
+        // console.log(req.body)
         let totalWeight  = 0
    
         const trips = await Trip.aggregate([{

@@ -13,6 +13,7 @@ export default function Table(props) {
   const{tableDataApi,tableHeading,title,column2,column3,column4,path,actionPath,deleteApi,editPath} = props
 
   const[tableData, updateTableData] = useState([])
+  const [loading,setLoading] = useState(false);
   const[error, setError] = useState(null)
   const[showDeleteModel,setShowDeleteModel]= useState(false)
   const[deleteDataApi,setDeleteDataApi]=useState('')
@@ -94,20 +95,19 @@ export default function Table(props) {
       if(data.success===false){
         alert('deleting failed')
         return console.log(data.message)
-        // setError(data.message)
-        // setLoading(false)
+        setError(data.message)
+        setLoading(false)
       }
-       
-      alert('data deleted successfully')
       setShowDeleteModel(false)
       updateTableData((prev)=>prev.filter((client)=>client._id!==id))
+      alert('data deleted successfully')
 
     }catch(error){
       console.log(error)
       // setError(error.message)
     }
 
-    navigate(path)
+    // navigate(path)
 
   }
 

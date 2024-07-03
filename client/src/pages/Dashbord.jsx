@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react'
 import { useNavigate } from 'react-router-dom'
+import GenerateRport from '../components/GenerateRport'
 
 export default function Dashbord() {
 
@@ -12,7 +13,7 @@ export default function Dashbord() {
 
   return (
 
-    <div className='grid grid-rows-11 p-2 gap-3 h-full w-full' >
+    <div className='grid grid-rows-11 p-2 gap-3 h-full w-full bg-slate-200' >
 
       <div className='centered text-2xl row-span-1 bg-white p-2 rounded-lg flex justify-between items-center'>
         
@@ -47,13 +48,14 @@ export default function Dashbord() {
           
       </div>
 
-      <div className='centered text-xl row-span-10 bg-white p-2 rounded-lg'>
+      <div className='centered text-xl row-span-10 bg-white p-2 rounded-lg gap-4 flex'>
+
+        <GenerateRport heading='TRIP REPORT' reportApi='/api/trip/find/'/>
+        <GenerateRport heading='SUPPLIER REPORT'/>
+        <GenerateRport heading='CLIENT REPORT'/>
+        <GenerateRport heading='GENERAL REPORT'/>
 
       </div>
-
-      {/* <div className='centered text-2xl row-span-1 bg-white p-2 rounded-lg flex justify-between'>
-
-      </div> */}
 
     </div>
     
