@@ -38,7 +38,7 @@ export default function GenerateRport(props) {
         );
         //getting response from the server
         const data =  await res.json();
-        // console.log(data)
+        console.log(data)
   
         //if response is false, show the error message to the client
         if(data.success===false){
@@ -67,23 +67,23 @@ export default function GenerateRport(props) {
 
     <form onSubmit={handleSubmit}>
 
-        <div className='bg-slate-200 rounded-xl p-4 flex flex-col gap-4 w-80 h-96'>
+      <div className='bg-slate-200 rounded-xl p-4 flex flex-col gap-4 w-80 h-96'>
 
-            <h1 className='text-2xl font-semibold text-center mt-2 mb-2'> {heading}</h1>
+        <h1 className='text-2xl font-semibold text-center mt-2 mb-2'> {heading}</h1>
 
-            <label className='text-1xl '>Select Month</label>
-            <input type="number" onChange={handleChange} placeholder="Select Month" id='month' className='border p-3 rounded-lg'
-            required 
-            />
+        <label className='text-1xl '>Select Month</label>
+        <input type="number" onChange={handleChange} placeholder="Select Month" id='month' className='border p-3 rounded-lg'
+        required 
+        />
 
-            <label className='text-1xl '>Select Year</label>
-            <input type="number" onChange={handleChange} placeholder="Select Year" id='year'  className='border p-3 rounded-lg'
-            required 
-            />
+        <label className='text-1xl '>Select Year</label>
+        <input type="number" onChange={handleChange} placeholder="Select Year" id='year'  className='border p-3 rounded-lg'
+        required 
+        />
 
-            <button className='text-1xl font-semibold rounded-lg border bg-slate-300 p-3 mt-2'>Generate Report</button>
+        <button className='text-1xl font-semibold rounded-lg border bg-slate-300 p-3 mt-2'>Generate Report</button>
 
-        </div>
+      </div>
 
     </form>
 

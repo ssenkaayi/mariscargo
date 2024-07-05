@@ -11,6 +11,12 @@ export default function Dashbord() {
     navigate('/addEmployee')
   }
 
+  const handleTripReport =()=>{
+
+    navigate('/tripReport')
+
+  }
+
   return (
 
     <div className='grid grid-rows-11 p-2 gap-3 h-full w-full bg-slate-200' >
@@ -36,9 +42,9 @@ export default function Dashbord() {
 
           </button>
 
-          <button className='bg-slate-300 rounded-lg p-1 cursor-pointer' onClick={handleCreateEmployee}>
+          <button className='bg-slate-300 rounded-lg p-1 cursor-pointer' onClick={handleTripReport}>
 
-            EDIT EMPLOYEE
+            GENERATE TRIP REPORT
 
           </button>
 
