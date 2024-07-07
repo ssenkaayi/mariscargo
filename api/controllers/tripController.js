@@ -110,7 +110,7 @@ export const findTripsByDate = async(req,res,next)=>{
         let totalWeight  = 0
    
         const trips = await Trip.aggregate([{
-        $project:{name:1,weight:1,date:1,year:{$year:"$date"},month:{$month:"$date"}
+        $project:{name:1,weight:1,date:1,expense:1,trip_payment:1,year:{$year:"$date"},month:{$month:"$date"}
         }},{$match:{year:parseInt(req.params.year),month:parseInt(req.params.month)}}])
 
         if(!trips) return next(errorHandler(400,"failed to get trips"))

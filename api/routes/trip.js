@@ -8,7 +8,7 @@ route.get('/getTrips',verifyToken,getTrips)
 route.get('/getTrip/:id',getTrip)
 route.put('/updateTrip/:id',updateTrip)
 route.delete('/deleteTrip/:id',deleteTrip)
-route.get('/find/:year/:month',findTripsByDate)
+route.get('/:year/:month',findTripsByDate)
 
 
 export default route

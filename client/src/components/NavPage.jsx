@@ -66,7 +66,7 @@ export default function NavPage() {
             <Route path='/editExpenses/:id' element={<EditExpenses/>}/>
             <Route path='/addEmployee' element={<AddEmployee/>}/>
             <Route path='/TripReport' element={<TripReport/>}/>
-            <Route path='/ViewReport/:year/:month' element={<ViewReport/>}/>
+            <Route path='/ViewReport/:type/:year/:month' element={<ViewReport/>}/>
 
           </Route>
 
