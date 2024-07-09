@@ -98,7 +98,6 @@ export default function SupplierProfile(props) {
     }
   return (
    
-
       <div className='grid grid-rows-11 p-2 gap-3 w-full h-full rounded-lg bg-slate-100'>
   
         <div className='centered text-xl row-span-3 bg-white p-2 rounded-lg '>
@@ -131,21 +130,14 @@ export default function SupplierProfile(props) {
 
             </div>
 
-
             <ProfileTable tableBody={clients}
             tableHeading={supplierProfileTable} column2='weight' column1='name'
             title="Supplier" column4='no_pieces' 
             column3='payments' path='/addSupplier' actionPath= '/clientProfile/'/>
   
           </div>
-  
-  
       </div>
-  
-   
       </div>
-  
-  
     )
   }
 

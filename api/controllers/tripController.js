@@ -108,6 +108,8 @@ export const findTripsByDate = async(req,res,next)=>{
 
         // console.log(req.body)
         let totalWeight  = 0
+        let totalExpense = 0
+        let totalTrip_Payment = 0
    
         const trips = await Trip.aggregate([{
         $project:{name:1,weight:1,date:1,expense:1,trip_payment:1,year:{$year:"$date"},month:{$month:"$date"}
@@ -122,6 +124,8 @@ export const findTripsByDate = async(req,res,next)=>{
             for (let trip = 0; trip<trips.length;trip++ ){
 
                 totalWeight  += trips[trip].weight
+                totalExpense += trips[trip].expense
+                totalTrip_Payment += trips[trip].trip_payment
                    
             }
     
@@ -133,7 +137,7 @@ export const findTripsByDate = async(req,res,next)=>{
 
         const report = {}
 
-        res.status(200).json({...report,trips,totalWeight,number})
+        res.status(200).json({...report,trips,totalWeight,number,totalExpense,totalTrip_Payment})
 
     }catch(error){
 

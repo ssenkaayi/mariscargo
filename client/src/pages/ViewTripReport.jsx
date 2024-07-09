@@ -2,8 +2,10 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react'
 import { useState } from 'react'
+import {tripTable} from '../data/TableHeading'
+import ViewReport from '../components/ViewReport'
 
-export default function ViewReport() {
+export default function ViewTripReport() {
 
   const params = useParams() 
   const [loading,setLoading] = useState(false);
@@ -13,6 +15,8 @@ export default function ViewReport() {
   const year = params.year
   const month = params.month
   const type = params.type
+
+  const title = `REPORT FOR TRIPS IN ${month} OF ${year}`
 
   useEffect(()=>{
 
@@ -46,7 +50,7 @@ export default function ViewReport() {
       //if response is True, register and navigate to the sign in page
       setLoading(false);
       setError(null)
-      setReportData(data)
+      setReportData(data.trips)
       
       // navigate('/')
 
@@ -59,8 +63,14 @@ export default function ViewReport() {
   
 
   return (
+   
+   <div>
 
-    <div>ViewReport</div>
+    < ViewReport tableData={reportData} tableHeading={tripTable} column1='weight'
+    column2='expense' column3='trip_payment' title={title}/>
+
+   </div>
+
 
   )
 }

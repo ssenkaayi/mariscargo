@@ -65,7 +65,7 @@ export default function TripProfile(props) {
         setTripDetails(data.trip)
         setSuppliers(data.suppliers)
         setExpenses(data.expense)
-        console.log(data.suppliers)
+        // console.log(data.suppliers)
 
       }
       catch(error){

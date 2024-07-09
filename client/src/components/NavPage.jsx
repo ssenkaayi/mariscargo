@@ -27,7 +27,8 @@ import EditPayment from '../pages/EditPayment'
 import EditExpenses from '../pages/EditExpenses'
 import EditTrip from '../pages/EditTrip'
 import TripReport from '../pages/TripReport'
-import ViewReport from '../pages/ViewReport'
+// import ViewReport from '../pages/ViewReport'
+import ViewTripReport from '../pages/ViewTripReport'
 import AddEmployee from '../pages/AddEmployee'
 
 export default function NavPage() {
@@ -66,7 +67,7 @@ export default function NavPage() {
             <Route path='/editExpenses/:id' element={<EditExpenses/>}/>
             <Route path='/addEmployee' element={<AddEmployee/>}/>
             <Route path='/TripReport' element={<TripReport/>}/>
-            <Route path='/ViewReport/:type/:year/:month' element={<ViewReport/>}/>
+            <Route path='/ViewTripReport/:type/:year/:month' element={<ViewTripReport/>}/>
 
           </Route>
 
