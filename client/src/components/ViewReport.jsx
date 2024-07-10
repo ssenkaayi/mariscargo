@@ -7,18 +7,18 @@ export default function ViewReport(props) {
     
     <div className='grid grid-rows-11 p-2 gap-3 w-full h-full rounded-lg bg-slate-100'>
 
-        <div className='centered text-xl row-span-3 bg-white p-2 rounded-lg '>
+        <div className='centered row-span-3 bg-white p-2 rounded-lg '>
 
-            <div className='mb-3 mt-2'>
+            <div className='mb-3 mt-2 text-xl'>
                 
                 <p>{title}</p>
             </div>
 
-            <div className='m-2'>
+            <div className='m-2 text-x '>
                 <p className='flex gap-8'><span className='w-50'>Total Weight:</span><span></span></p >
                 <p className='flex gap-8'><span className='w-50'> Total Expenses:</span><span></span></p >
                 <p className='flex gap-8'><span className='w-50'> Total Trip Payments:</span><span></span></p >
-                <p className='flex gap-8'><span className='w-50'>ID No:</span><span></span></p >
+                <p className='flex gap-8'><span className='w-50'>Total No Trips:</span><span></span></p >
             </div>
 
         </div>
