@@ -2,7 +2,8 @@ import React from 'react'
 
 export default function ViewReport(props) {
 
-  const {tableHeading,tableData, title, column1,column2,column3} = props
+  const {tableHeading,tableData, reportDetails,title, column1,column2,column3} = props
+//   console.log(reportDetails)
   return (
     
     <div className='grid grid-rows-11 p-2 gap-3 w-full h-full rounded-lg bg-slate-100'>
@@ -15,10 +16,10 @@ export default function ViewReport(props) {
             </div>
 
             <div className='m-2 text-x '>
-                <p className='flex gap-8'><span className='w-50'>Total Weight:</span><span></span></p >
-                <p className='flex gap-8'><span className='w-50'> Total Expenses:</span><span></span></p >
-                <p className='flex gap-8'><span className='w-50'> Total Trip Payments:</span><span></span></p >
-                <p className='flex gap-8'><span className='w-50'>Total No Trips:</span><span></span></p >
+                <p className='flex gap-8'><span className='w-50'>Total Weight:</span><span>{reportDetails.totalWeight}</span></p >
+                <p className='flex gap-8'><span className='w-50'> Total Expenses:</span><span>{reportDetails.totalExpense}</span></p >
+                <p className='flex gap-8'><span className='w-50'> Total Trip Payments:</span><span>{reportDetails.totalTrip_Payment}</span></p >
+                <p className='flex gap-8'><span className='w-50'>Total No Trips:</span><span></span>{reportDetails.number}</p >
             </div>
 
         </div>

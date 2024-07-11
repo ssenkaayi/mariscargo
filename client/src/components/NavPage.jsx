@@ -30,6 +30,8 @@ import TripReport from '../pages/TripReport'
 // import ViewReport from '../pages/ViewReport'
 import ViewTripReport from '../pages/ViewTripReport'
 import AddEmployee from '../pages/AddEmployee'
+import SupplierReport from '../pages/SupplierReport'
+import ClinetReport from '../pages/ClinetReport'
 
 export default function NavPage() {
   return (
@@ -67,7 +69,9 @@ export default function NavPage() {
             <Route path='/editExpenses/:id' element={<EditExpenses/>}/>
             <Route path='/addEmployee' element={<AddEmployee/>}/>
             <Route path='/TripReport' element={<TripReport/>}/>
-            <Route path='/ViewTripReport/:type/:year/:month' element={<ViewTripReport/>}/>
+            <Route path='/supplierReport/:type/:year/:month' element={<SupplierReport/>}/>
+            <Route path='/clientReport/:type/:year/:month' element={<ClinetReport/>}/>
+            <Route path='/tripReport/:type/:year/:month' element={<ViewTripReport/>}/>
 
           </Route>
 

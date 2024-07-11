@@ -11,6 +11,7 @@ export default function ViewTripReport() {
   const [loading,setLoading] = useState(false);
   const [error,setError] = useState(null);
   const [reportData,setReportData] = useState([])
+  const [tripDetails,setTripDetails] = useState({number:0,totalExpense:0,totalTrip_Payment:0,totalWeight:0})
 
   const year = params.year
   const month = params.month
@@ -38,7 +39,7 @@ export default function ViewTripReport() {
       );
       //getting response from the server
       const data =  await res.json();
-      console.log(data)
+      // console.log(data)
 
       //if response is false, show the error message to the client
       if(data.success===false){
@@ -51,6 +52,7 @@ export default function ViewTripReport() {
       setLoading(false);
       setError(null)
       setReportData(data.trips)
+      setTripDetails(data)
       
       // navigate('/')
 
@@ -66,7 +68,7 @@ export default function ViewTripReport() {
    
    <div>
 
-    < ViewReport tableData={reportData} tableHeading={tripTable} column1='weight'
+    < ViewReport reportDetails={tripDetails} tableData={reportData} tableHeading={tripTable} column1='weight'
     column2='expense' column3='trip_payment' title={title}/>
 
    </div>

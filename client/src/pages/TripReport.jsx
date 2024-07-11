@@ -33,7 +33,7 @@ export default function TripReport() {
 
     const handleSubmit = ()=>{
 
-        navigate(`/viewTripReport/${formData.role}/${formData.year}/${formData.month}`)
+        navigate(`/${formData.role}Report/${formData.role}/${formData.year}/${formData.month}`)
 
     }
 
