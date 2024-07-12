@@ -113,3 +113,57 @@ export const updateSupplier = async(req,res,next)=>{
         next(error)
     }
 }
+
+export const supplierReport = async(req,res,next)=>{
+    
+    try{
+
+        // console.log(req.body)
+        let totalWeight  = 0
+        // let totalExpense = 0
+        // let totalTrip_Payment = 0
+   
+        const suppliers = await Supplier.aggregate([{
+        $project:{name:1,weight:1,date:1,year:{$year:"$date"},month:{$month:"$date"}
+        }},{$match:{year:parseInt(req.params.year),month:parseInt(req.params.month)}}, 
+        ])
+
+        const supplierGroups = await Supplier.aggregate([{
+        $project:{name:1,weight:1,date:1,year:{$year:"$date"},month:{$month:"$date"}
+        }},{$match:{year:parseInt(req.params.year),month:parseInt(req.params.month)}},  {
+            $group: {
+                _id: "$name",
+                count: { $count: { } },
+                weight:{$sum:"$weight"}
+            }
+        }])
+
+        if(!suppliers) return next(errorHandler(400,"failed to get supplier"))
+
+        const number = suppliers.length
+
+        if(suppliers.length>0){
+
+            for (let supplier = 0; supplier<suppliers.length;supplier++ ){
+
+                totalWeight  += suppliers[supplier].weight
+                // totalExpense += trips[supplier].expense
+                // totalTrip_Payment += suppliers[trip].trip_payment
+                   
+            }
+    
+        }else{
+    
+            totalWeight = 0
+    
+        }
+
+        const report = {}
+
+        res.status(200).json({...report,suppliers,totalWeight,number,supplierGroups})
+
+    }catch(error){
+
+        next(error)
+    }
+}

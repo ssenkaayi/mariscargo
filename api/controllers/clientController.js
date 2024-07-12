@@ -145,4 +145,58 @@ export const deleteClient = async(req,res,next)=>{
     }
 }
 
+export const clientReport = async(req,res,next)=>{
+    
+    try{
+
+        // console.log(req.body)
+        let totalWeight  = 0
+        let totalDeliveries = 0
+        let totalPayments = 0
+   
+        const clients = await Client.aggregate([{
+        $project:{name:1,weight:1,deliveries:1,payments:1,date:1,year:{$year:"$date"},month:{$month:"$date"}
+        }},{$match:{year:parseInt(req.params.year),month:parseInt(req.params.month)}}, 
+        ])
+
+        // const supplierGroups = await Supplier.aggregate([{
+        // $project:{name:1,weight:1,date:1,year:{$year:"$date"},month:{$month:"$date"}
+        // }},{$match:{year:parseInt(req.params.year),month:parseInt(req.params.month)}},  {
+        //     $group: {
+        //         _id: "$name",
+        //         count: { $count: { } },
+        //         weight:{$sum:"$weight"}
+        //     }
+        // }])
+
+        if(!clients) return next(errorHandler(400,"failed to get supplier"))
+
+        const number = clients.length
+
+        if(clients.length>0){
+
+            for (let client = 0; client < clients.length;client++ ){
+
+                totalWeight  += clients[client].weight
+                totalDeliveries += clients[client].deliveries
+                totalPayments += clients[client].payments
+                   
+            }
+    
+        }else{
+    
+            totalWeight = 0
+    
+        }
+
+        const report = {}
+
+        res.status(200).json({...report,clients,totalWeight,number,totalDeliveries,totalPayments})
+
+    }catch(error){
+
+        next(error)
+    }
+}
+
 
