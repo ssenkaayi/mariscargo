@@ -15,7 +15,7 @@ export default function SupplierProfile(props) {
   const supplier_id = params.id
   const [loading,setLoading]=useState(false);
   const [error,setError]= useState(null);
-  const [supplierDetails,setSupplierDetails]=useState([]) 
+  const [supplierDetails,setSupplierDetails]=useState({date:""}) 
   const navigate = useNavigate()
   const [clients , setClients] = useState([])
 
@@ -110,7 +110,7 @@ export default function SupplierProfile(props) {
           <div className='m-2'>
               <p className='flex gap-8'><span className='w-20'> Weight:</span><span>{supplierDetails.weight} kgs</span></p >
               <p className='flex gap-8'><span className='w-20'> Trip:</span><span>{supplierDetails.name}</span></p >
-              <p className='flex gap-8'><span className='w-20'> Date:</span><span>{supplierDetails.date}</span></p >
+              <p className='flex gap-8'><span className='w-20'> Date:</span><span>{supplierDetails.date.split("T",1)}</span></p >
               <p className='flex gap-8'><span className='w-20'>ID No:</span><span>{supplierDetails._id}</span></p >
           </div>
   

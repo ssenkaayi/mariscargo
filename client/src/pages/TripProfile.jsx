@@ -17,7 +17,7 @@ export default function TripProfile(props) {
   const trip_id = params.id
   const [loading,setLoading]=useState(false);
   const [error,setError]= useState(null);
-  const [tripDetails,setTripDetails]=useState([]) 
+  const [tripDetails,setTripDetails]=useState({"date":""}) 
   const navigate = useNavigate()
   const [suppliers , setSuppliers] = useState([])
   const [expenses , setExpenses] = useState([])
@@ -99,7 +99,7 @@ export default function TripProfile(props) {
           <div className='mt-2'>
               <p className='flex gap-8'><span className='w-20'> Weight:</span><span>{tripDetails.weight} kg</span></p >
               <p className='flex gap-8'><span className='w-20'> Trip:</span><span>{tripDetails.name}</span></p >
-              <p className='flex gap-8'><span className='w-20'> Date:</span><span>{tripDetails.date}</span></p >
+              <p className='flex gap-8'><span className='w-20'> Date:</span><span>{tripDetails.date.split("T",1)}</span></p >
               <p className='flex gap-8'><span className='w-20'>Payment:</span><span>{tripDetails.trip_payment}</span></p >
               <p className='flex gap-8'><span className='w-20'>Expenses:</span><span>{tripDetails.expense} /=</span></p >
           </div>
