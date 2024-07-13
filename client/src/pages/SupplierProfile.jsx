@@ -108,7 +108,7 @@ export default function SupplierProfile(props) {
           </div>
   
           <div className='m-2'>
-              <p className='flex gap-8'><span className='w-20'> Weight:</span><span>{supplierDetails.weight}</span></p >
+              <p className='flex gap-8'><span className='w-20'> Weight:</span><span>{supplierDetails.weight} kgs</span></p >
               <p className='flex gap-8'><span className='w-20'> Trip:</span><span>{supplierDetails.name}</span></p >
               <p className='flex gap-8'><span className='w-20'> Date:</span><span>{supplierDetails.date}</span></p >
               <p className='flex gap-8'><span className='w-20'>ID No:</span><span>{supplierDetails._id}</span></p >
@@ -133,7 +133,7 @@ export default function SupplierProfile(props) {
             <ProfileTable tableBody={clients}
             tableHeading={supplierProfileTable} column2='weight' column1='name'
             title="Supplier" column4='no_pieces' 
-            column3='payments' path='/addSupplier' actionPath= '/clientProfile/'/>
+            column3='phone' path='/addSupplier' actionPath= '/clientProfile/'/>
   
           </div>
       </div>

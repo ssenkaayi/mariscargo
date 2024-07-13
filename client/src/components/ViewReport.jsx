@@ -2,6 +2,10 @@ import React from 'react'
 
 export default function ViewReport(props) {
 
+    const handlePrint =()=>{
+        window.print()
+      }
+
   const {tableHeading,tableData, reportDetails,title, column1,column2,column3} = props
 //   console.log(reportDetails)
   return (
@@ -72,6 +76,10 @@ export default function ViewReport(props) {
         <div  className='centered text-x row-span-1 bg-white p-2 rounded-lg '>
         
             <div>
+
+            <button 
+                onClick={()=>handlePrint()}  className='flex text-sm items-center p-2 ml-8 bg-gray-400 rounded-lg'>PRINT
+            </button>
 
 
                 

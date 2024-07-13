@@ -134,7 +134,8 @@ export const supplierReport = async(req,res,next)=>{
             $group: {
                 _id: "$name",
                 count: { $count: { } },
-                weight:{$sum:"$weight"}
+                weight:{$sum:"$weight"},
+            
             }
         }])
 
