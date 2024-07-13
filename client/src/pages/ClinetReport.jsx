@@ -17,7 +17,7 @@ export default function ClinetReport() {
     const month = params.month
     const type = params.type
   
-    const title = `SUPPLIER REPORT FOR  `
+    const title = `CLIENT REPORT FOR  `
     //   IN ${month} OF ${year}
 
     useEffect(()=>{
@@ -70,7 +70,8 @@ export default function ClinetReport() {
     <div>
 
         < ViewReport reportDetails={tripDetails} tableData={reportData} tableHeading={clientTable} column1='weight'
-        column2='payments' column3='deliveries' title={title}/>
+        column2='payments' column3='deliveries' title={title} details1='payments' details2='deliveries' details3='clients'
+        detailsData1={tripDetails.totalPayments} detailsData2={tripDetails.totalDeliveries}/>
 
     </div>
   )

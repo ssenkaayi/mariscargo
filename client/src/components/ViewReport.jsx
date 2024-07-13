@@ -1,3 +1,4 @@
+
 import React from 'react'
 
 export default function ViewReport(props) {
@@ -6,7 +7,7 @@ export default function ViewReport(props) {
         window.print()
       }
 
-  const {tableHeading,tableData, reportDetails,title, column1,column2,column3} = props
+  const {tableHeading,tableData, reportDetails,title, column1,column2,column3,details1,details2,details3,detailsData1,detailsData2} = props
 //   console.log(reportDetails)
   return (
     
@@ -21,9 +22,9 @@ export default function ViewReport(props) {
 
             <div className='m-2 text-x '>
                 <p className='flex gap-8'><span className='w-50'>Total Weight:</span><span>{reportDetails.totalWeight}</span></p >
-                <p className='flex gap-8'><span className='w-50'> Total Expenses:</span><span>{reportDetails.totalExpense}</span></p >
-                <p className='flex gap-8'><span className='w-50'> Total Trip Payments:</span><span>{reportDetails.totalTrip_Payment}</span></p >
-                <p className='flex gap-8'><span className='w-50'>Total No Trips:</span><span></span>{reportDetails.number}</p >
+                <p className='flex gap-8'><span className='w-50'> Total {details1}:</span><span>{detailsData1}</span></p >
+                <p className='flex gap-8'><span className='w-50'> Total {details2}:</span><span>{detailsData2}</span></p >
+                <p className='flex gap-8'><span className='w-50'>No {details3}:</span><span></span>{reportDetails.number}</p >
             </div>
 
             <table className='w-full bordered hover mt-5'>
@@ -44,7 +45,7 @@ export default function ViewReport(props) {
 
                 </thead >
 
-                <tbody className='p-1'>
+                <tbody className='p-1 first-letter:'>
 
                     {tableData.length>0?tableData.map((client,index)=>{
 

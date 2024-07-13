@@ -124,7 +124,7 @@ export const supplierReport = async(req,res,next)=>{
         // let totalTrip_Payment = 0
    
         const suppliers = await Supplier.aggregate([{
-        $project:{name:1,weight:1,date:1,year:{$year:"$date"},month:{$month:"$date"}
+        $project:{name:1,weight:1,date:1,tripName:1,no_clients:1,year:{$year:"$date"},month:{$month:"$date"}
         }},{$match:{year:parseInt(req.params.year),month:parseInt(req.params.month)}}, 
         ])
 
