@@ -1,6 +1,6 @@
 
 import express from 'express'
-import { generalReport} from '../controllers/clientController.js'
+import { generalReport} from '../controllers/generalReportController.js'
 
 const route = express.Router()
 
