@@ -123,35 +123,38 @@ export default function AddEmployee() {
                         <div className='flex gap-2'>
                             <input type='checkbox' onChange={handleChange}  id='admin' checked={formData.role==='admin'} className='w-5'></input>
                             <span>Admin</span>
-                        </div>                    <label className='mb-4 text-1xl font-semibold'>Roles</label>
-                    <div className='flex flex-row gap-6 flex-wrap'>
+                        </div> 
 
-                        <div className='flex gap-2'>
-                            <input type='checkbox' onChange={handleChange} checked={formData.role==='office'} id='office' className='w-5'></input>
-                            <span>Office</span>
-                        </div>
+                        {/* <label className='mb-4 text-1xl font-semibold'>Roles</label>
+                        
+                        <div className='flex flex-row gap-6 flex-wrap'>
 
-                        <div className='flex gap-2'>
-                            <input type='checkbox' onChange={handleChange}  id='admin' checked={formData.role==='admin'} className='w-5'></input>
-                            <span>Admin</span>
-                        </div>
+                            <div className='flex gap-2'>
+                                <input type='checkbox' onChange={handleChange} checked={formData.role==='office'} id='office' className='w-5'></input>
+                                <span>Office</span>
+                            </div>
 
-                        <div className='flex gap-2'>
-                            <input type='checkbox' id='cashier' onChange={handleChange} checked={formData.role==='cashier'} className='w-5'></input>
-                            <span>Cashier</span>
-                        </div>
+                            <div className='flex gap-2'>
+                                <input type='checkbox' onChange={handleChange}  id='admin' checked={formData.role==='admin'} className='w-5'></input>
+                                <span>Admin</span>
+                            </div>
 
-                        <div className='flex gap-2'>
-                            <input type='checkbox' id='delivery' onChange={handleChange} checked={formData.role==='delivery'} className='w-5'></input>
-                            <span>Delivery</span>
-                        </div>
+                            <div className='flex gap-2'>
+                                <input type='checkbox' id='cashier' onChange={handleChange} checked={formData.role==='cashier'} className='w-5'></input>
+                                <span>Cashier</span>
+                            </div>
 
-                        <div className='flex gap-2'>
-                            <input type='checkbox' id='store' onChange={handleChange} checked={formData.role==='store'}  className='w-5'></input>
-                            <span>Store</span>
-                        </div>
+                            <div className='flex gap-2'>
+                                <input type='checkbox' id='delivery' onChange={handleChange} checked={formData.role==='delivery'} className='w-5'></input>
+                                <span>Delivery</span>
+                            </div>
 
-                    </div>
+                            <div className='flex gap-2'>
+                                <input type='checkbox' id='store' onChange={handleChange} checked={formData.role==='store'}  className='w-5'></input>
+                                <span>Store</span>
+                            </div>
+
+                        </div> */}
 
                         <div className='flex gap-2'>
                             <input type='checkbox' id='cashier' onChange={handleChange} checked={formData.role==='cashier'} className='w-5'></input>

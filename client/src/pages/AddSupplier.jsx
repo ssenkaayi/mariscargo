@@ -62,7 +62,7 @@ export default function AddSupplier() {
     }
 
     const handleOnClose = ()=>{
-        navigate('/suppliers')
+        navigate(`/tripProfile/${trip_id}`)
     }
 
   return (
@@ -74,33 +74,23 @@ export default function AddSupplier() {
             <form className='flex flex-col w-[500px] P-4' onSubmit={handleSubmit}  >
 
               <div className='flex flex-col gap-4'>
-{/* 
-                  <label className='mb-4  text-1xl font-semibold'>Date</label>
-                  <input type="Date" placeholder="sky team name" id='date' className='border p-3 rounded-lg'
-                  required onChange={handleChange}
-                  /> */}
 
-                  <label className='mb-4 text-1xl font-semibold'>Supplier name</label>
-                  <input type="text" placeholder="sky team name" id='name' className='border p-3 rounded-lg'
-                  required onChange={handleChange}
-                  />
+                <label className='mb-4 text-1xl font-semibold'>Supplier name</label>
+                <input type="text" placeholder="sky team name" id='name' className='border p-3 rounded-lg'
+                required onChange={handleChange}
+                />
 
-                  {/* <label className='mb-4 text-1xl font-semibold'>Trip payment</label>
-                    <input type="Number" placeholder="Trip Payment" id='trip_payment' className='border p-3 rounded-lg'
-                    required onChange={handleChange}
-                  /> */}
+                <div className='mt-4 flex justify-between items-center'>
+                    
+                  <button onClick={handleOnClose} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+                  type="button"> cancel
+                  </button>
 
-                  <div className='mt-4 flex justify-between items-center'>
-                      
-                    <button onClick={handleOnClose} className='bg-red-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
-                    type="button"> cancel
-                    </button>
+                  <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+                  > {loading? 'submiting...':'Submit'}
+                  </button>
 
-                    <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
-                    > {loading? 'submiting...':'Submit'}
-                    </button>
-
-                  </div>
+                </div>
 
               </div>
 

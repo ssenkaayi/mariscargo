@@ -63,7 +63,9 @@ export default function AddClient() {
     }
 
     const handleOnClose = ()=>{
-        navigate('/clients')
+
+      navigate(`/supplierProfile/${supplier_id}`) ///clients
+      
     }
 
   return (
