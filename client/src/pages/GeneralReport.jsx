@@ -12,7 +12,7 @@ export default function ClinetReport() {
     const [error,setError] = useState(null);
     const [reportData,setReportData] = useState([])
     const [tripDetails,setTripDetails] = useState([])
-    const [clientDetails,setClientDetails] = useState({})
+    const [clientDetails,setClientDetails] = useState({weight:0,payments:0,deliveries:0,count:0})
   
     const year = params.year
     const month = params.month
