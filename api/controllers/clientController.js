@@ -1,6 +1,7 @@
 
 import Client from '../modules/clientModule.js'
 import Supplier from '../modules/supplierModule.js'
+import Trip from '../modules/tripModule.js'
 import {clientValidation,editClientValidation} from '../utilities/validation.js'
 import { deleteDeliveriesInClient, deletePaymentsInClient, updateSupplierWeight} from '../utilities/updateWeight.js'
 import { isValidObjectId } from "mongoose";
@@ -159,16 +160,6 @@ export const clientReport = async(req,res,next)=>{
         }},{$match:{year:parseInt(req.params.year),month:parseInt(req.params.month)}}, 
         ])
 
-        // const supplierGroups = await Supplier.aggregate([{
-        // $project:{name:1,weight:1,date:1,year:{$year:"$date"},month:{$month:"$date"}
-        // }},{$match:{year:parseInt(req.params.year),month:parseInt(req.params.month)}},  {
-        //     $group: {
-        //         _id: "$name",
-        //         count: { $count: { } },
-        //         weight:{$sum:"$weight"}
-        //     }
-        // }])
-
         if(!clients) return next(errorHandler(400,"failed to get supplier"))
 
         const number = clients.length
@@ -198,5 +189,7 @@ export const clientReport = async(req,res,next)=>{
         next(error)
     }
 }
+
+
 
 

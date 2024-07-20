@@ -21,7 +21,7 @@ export default function TripReport() {
         [e.target.id]:e.target.value,
       });
 
-      if(e.target.id === 'client'|| e.target.id === 'supplier'||e.target.id === 'delivery'|| e.target.id === 'trip'|| e.target.id === 'store'){
+      if(e.target.id === 'client'|| e.target.id === 'supplier'||e.target.id === 'general'|| e.target.id === 'trip'|| e.target.id === 'store'){
         setFormData({...formData,role:e.target.id})
     };
 
@@ -66,6 +66,11 @@ export default function TripReport() {
                         </div>
 
                         <div className='flex gap-2'>
+                            <input type='checkbox' id='general' onChange={handleChange} checked={formData.role==='general'} className='w-5'></input>
+                            <span>General Report</span>
+                        </div>
+
+                        {/* <div className='flex gap-2'>
                             <input type='checkbox' id='delivery' onChange={handleChange} checked={formData.role==='delivery'} className='w-5'></input>
                             <span>Delivery</span>
                         </div>
@@ -73,17 +78,17 @@ export default function TripReport() {
                         <div className='flex gap-2'>
                             <input type='checkbox' id='store' onChange={handleChange} checked={formData.role==='store'}  className='w-5'></input>
                             <span>Payments</span>
-                        </div>
+                        </div> */}
 
                     </div>
 
                 <label className='mb-4 text-1xl font-semibold'>Month</label>
-                <input type="number" placeholder="sky team name" id='month' value={formData.name} className='border p-3 rounded-lg'
+                <input type="number" placeholder="Month" min={1} id='month' value={formData.name} className='border p-3 rounded-lg'
                 required onChange={handleChange}
                 />
 
                 <label className='mb-4 text-1xl font-semibold'>Year</label>
-                <input type="number" placeholder="sky team name" id='year' value={formData.name} className='border p-3 rounded-lg'
+                <input type="number" placeholder="Year" min={2024} id='year' value={formData.name} className='border p-3 rounded-lg'
                 required onChange={handleChange}
                 />
 

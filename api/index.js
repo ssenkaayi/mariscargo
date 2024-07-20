@@ -7,6 +7,7 @@ import deliveryRouteHandler from './routes/deliveriy.js'
 import paymentRouteHandler from './routes/payment.js'
 import expenseRouteHandler from './routes/expense.js'
 import employeRouteHandler from './routes/user.js'
+import generalReportRouteHandler from './routes/generalReport.js'
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import cookieParser from 'cookie-parser';
@@ -57,6 +58,7 @@ server.use('/api/delivery', deliveryRouteHandler)
 server.use('/api/payment',paymentRouteHandler)
 server.use('/api/expense',expenseRouteHandler)
 server.use('/api/employee',employeRouteHandler)
+server.use('/api/general',generalReportRouteHandler)
 
 server.use(express.static(path.join(__dirname,'/client/dist' )))
 
