@@ -79,10 +79,10 @@ export default function ClinetReport() {
 
         <div className='text-center mb-5 mt-5 text-xl'>
             
-            <p>{title}</p>
+            <p><strong>{title}</strong></p>
         </div>
 
-        <h2 className='uppercase mt-5 '>trip monthly summury</h2>
+        <h2 className='uppercase mt-5 '><strong>trip monthly summury</strong></h2>
 
 
         <table className='w-full bordered hover mt-5'>
@@ -129,7 +129,7 @@ export default function ClinetReport() {
 
         </table>
 
-        <h2 className='uppercase mt-5'>supplier monthly summury</h2>
+        <h2 className='uppercase mt-5'><strong>supplier monthly summury</strong></h2>
 
         <table className='w-full bordered hover mt-5 mb-0'>
 
@@ -173,7 +173,7 @@ export default function ClinetReport() {
 
         </table>
 
-        <h2 className='uppercase mt-5 mb-2'>client monthly summury</h2>
+        <h2 className='uppercase mt-5 mb-2'><strong>client monthly summury</strong></h2>
 
         <table className='w-full bordered hover mt-5 mb-10'>
 
