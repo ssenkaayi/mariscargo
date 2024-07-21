@@ -77,12 +77,105 @@ export default function ClinetReport() {
 
     <div className='centered row-span-10 bg-white p-2 rounded-lg '>
 
-        <div className='mb-3 mt-2 text-xl'>
+        <div className='text-center mb-5 mt-5 text-xl'>
             
             <p>{title}</p>
         </div>
 
-        <table className='w-full bordered hover mt-10 mb-10'>
+        <h2 className='uppercase mt-5 '>trip monthly summury</h2>
+
+
+        <table className='w-full bordered hover mt-5'>
+
+            <thead className='bg-slate-300'>
+
+                <tr>
+
+                    <th className='p-2 text-center'>Trip</th>
+                    <th className='p-2 text-center'>No Tripss</th>
+                    <th className='p-2 text-center'>Weight</th>
+                    <th className='p-2 text-center'>Trip Payments</th>
+                    <th className='p-2 text-center'>Expenses</th>
+
+
+                </tr>
+
+            </thead >
+
+            <tbody className='p-1 mt-10'>
+
+                {tripDetails.length>0?tripDetails.map((client,index)=>{
+
+                return(  
+                    
+                    <tr className='text-center ' key={client._id}>
+
+                    <td className='p-2'>{client._id}</td>
+                    <td >{client.count}</td>
+                    <td >{client.weight}</td>
+                    <td >{client.trip_payment}</td>
+                    <td >{client.expense}</td>
+
+                    </tr>                  
+
+                )
+                }):<tr className='text-center'>
+
+                <td className='text-center'>{title} not available </td>
+
+                </tr>}
+
+            </tbody>
+
+        </table>
+
+        <h2 className='uppercase mt-5'>supplier monthly summury</h2>
+
+        <table className='w-full bordered hover mt-5 mb-0'>
+
+            <thead className='bg-slate-300'>
+
+                <tr>
+
+                    <th className='p-2 text-center'>Supplier</th>
+                    <th className='p-2 text-center'>No Clinets</th>
+                    <th className='p-2 text-center'>Weight</th>
+                    <th className='p-2 text-center'>No Trips</th>
+
+                </tr>
+
+            </thead >
+
+            <tbody className='p-1 first-letter:'>
+
+                {reportData.length>0?reportData.map((client,index)=>{
+
+                return(  
+                    
+                    <tr className='text-center ' key={client._id}>
+
+                    <td className='p-2'>{client._id}</td>
+                    <td >{client.no_clients}</td>
+                    <td >{client.weight.toFixed(1)}</td>
+                    <td >{client.count}</td>
+                    <td >{client.expense}</td>
+
+                    </tr>                  
+
+                )
+                }):<tr className='text-center'>
+
+                <td className='text-center'>{title} not available </td>
+
+                </tr>}
+
+            </tbody>
+
+        </table>
+
+        <h2 className='uppercase mt-5 mb-2'>client monthly summury</h2>
+
+        <table className='w-full bordered hover mt-5 mb-10'>
 
             <thead className='bg-slate-300'>
 
@@ -124,91 +217,6 @@ export default function ClinetReport() {
 
         </table>
 
-        <table className='w-full bordered hover mt-5'>
-
-            <thead className='bg-slate-300'>
-
-                <tr>
-
-                    <th className='p-2 text-center'>Trip</th>
-                    <th className='p-2 text-center'>No Tripss</th>
-                    <th className='p-2 text-center'>Weight</th>
-                    <th className='p-2 text-center'>Trip Payments</th>
-                    <th className='p-2 text-center'>Expenses</th>
-
-
-                </tr>
-
-            </thead >
-
-            <tbody className='p-1 mb-5 mt-10'>
-
-                {tripDetails.length>0?tripDetails.map((client,index)=>{
-
-                return(  
-                    
-                    <tr className='text-center ' key={client._id}>
-
-                    <td className='p-2'>{client._id}</td>
-                    <td >{client.count}</td>
-                    <td >{client.weight}</td>
-                    <td >{client.trip_payment}</td>
-                    <td >{client.expense}</td>
-
-                    </tr>                  
-
-                )
-                }):<tr className='text-center'>
-
-                <td className='text-center'>{title} not available </td>
-
-                </tr>}
-
-            </tbody>
-
-        </table>
-
-        <table className='w-full bordered hover mt-5'>
-
-            <thead className='bg-slate-300'>
-
-                <tr>
-
-                    <th className='p-2 text-center'>Supplier</th>
-                    <th className='p-2 text-center'>No Clinets</th>
-                    <th className='p-2 text-center'>Weight</th>
-                    <th className='p-2 text-center'>No Trips</th>
-
-                </tr>
-
-            </thead >
-
-            <tbody className='p-1 first-letter:'>
-
-                {reportData.length>0?reportData.map((client,index)=>{
-
-                return(  
-                    
-                    <tr className='text-center ' key={client._id}>
-
-                    <td className='p-2'>{client._id}</td>
-                    <td >{client.no_clients}</td>
-                    <td >{client.weight.toFixed(1)}</td>
-                    <td >{client.count}</td>
-                    <td >{client.expense}</td>
-
-                    </tr>                  
-
-                )
-                }):<tr className='text-center'>
-
-                <td className='text-center'>{title} not available </td>
-
-                </tr>}
-
-            </tbody>
-
-        </table>
 
     </div>
 
