@@ -12,7 +12,7 @@ export default function ClinetReport() {
     const [error,setError] = useState(null);
     const [reportData,setReportData] = useState([])
     const [tripDetails,setTripDetails] = useState([])
-    const [clientDetails,setClientDetails] = useState({weight:0,payments:0,deliveries:0,count:0})
+    const [clientDetails,setClientDetails] = useState([])
   
     const year = params.year
     const month = params.month
@@ -41,7 +41,7 @@ export default function ClinetReport() {
         );
         //getting response from the server
         const data =  await res.json();
-        // console.log(data)
+        console.log(data)
   
         //if response is false, show the error message to the client
         if(data.success===false){
@@ -55,7 +55,8 @@ export default function ClinetReport() {
         setError(null)
         setReportData(data.suppliers)
         setTripDetails(data.trips)
-        setClientDetails(data.clients[0])
+        setClientDetails(data.clients)
+        console.log(clientDetails)
         
         // navigate('/')
   
@@ -81,12 +82,47 @@ export default function ClinetReport() {
             <p>{title}</p>
         </div>
 
-        <div className='m-2 text-x '>
-            <p className='flex gap-8'><span className='w-50'>WEIGHT</span><span>{clientDetails.weight}</span></p >
-            <p className='flex gap-8'><span className='w-50'>PAYMENTS</span><span>{clientDetails.payments}</span></p >
-            <p className='flex gap-8'><span className='w-50'> DELIVERIES</span><span>{clientDetails.deliveries}</span></p >
-            <p className='flex gap-8'><span className='w-50'>NO CLIENTS</span><span>{clientDetails.count}</span></p >
-        </div>
+        <table className='w-full bordered hover mt-10 mb-10'>
+
+            <thead className='bg-slate-300'>
+
+                <tr>
+
+                    <th className='p-2 text-center'>No Clients</th>
+                    <th className='p-2 text-center'>Weight</th>
+                    <th className='p-2 text-center'>Payments</th>
+                    <th className='p-2 text-center'>Deliveries</th>
+
+                </tr>
+
+            </thead >
+
+            <tbody className='p-1 first-letter:'>
+
+                {clientDetails.length>0?clientDetails.map((client,index)=>{
+
+                return(  
+                    
+                    <tr className='text-center ' key={index}>
+
+                    <td className='p-2'>{client.count}</td>
+                    <td >{client.weight}</td>
+                    <td >{client.payments}</td>
+                    <td >{client.deliveries}</td>
+                    {/* <td >{client.expense}</td> */}
+
+                    </tr>                  
+
+                )
+                }):<tr className='text-center'>
+
+                <td className='text-center'>{title} not available </td>
+
+                </tr>}
+
+            </tbody>
+
+        </table>
 
         <table className='w-full bordered hover mt-5'>
 
@@ -157,7 +193,7 @@ export default function ClinetReport() {
 
                     <td className='p-2'>{client._id}</td>
                     <td >{client.no_clients}</td>
-                    <td >{client.weight}</td>
+                    <td >{client.weight.toFixed(1)}</td>
                     <td >{client.count}</td>
                     <td >{client.expense}</td>
 
