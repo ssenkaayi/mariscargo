@@ -41,7 +41,7 @@ export default function ClinetReport() {
         );
         //getting response from the server
         const data =  await res.json();
-        console.log(data)
+        // console.log(data)
   
         //if response is false, show the error message to the client
         if(data.success===false){
@@ -56,7 +56,7 @@ export default function ClinetReport() {
         setReportData(data.suppliers)
         setTripDetails(data.trips)
         setClientDetails(data.clients)
-        console.log(clientDetails)
+        // console.log(clientDetails)
         
         // navigate('/')
   

@@ -43,7 +43,7 @@ export default function TripReport() {
          
         <h3 className='mt-4  text-5xl'>GENERATE TRIP REPORT</h3>
 
-            <form className='flex flex-col w-[500px] P-4' onSubmit={handleSubmit}  >
+            <div className='flex flex-col w-[500px] P-4' onSubmit={handleSubmit}  >
 
               <div className='flex flex-col gap-4'>
 
@@ -98,7 +98,7 @@ export default function TripReport() {
                   type="button"> cancel
                   </button>
 
-                  <button disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
+                  <button onClick={handleSubmit}  disabled={loading} className='bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95'
                   > {loading? 'submiting...':'Submit'}
                   </button>
 
@@ -108,7 +108,7 @@ export default function TripReport() {
 
               {error && <p className='text-red-500 mt-5'>{error}</p>}
 
-            </form>
+            </div>
 
         </div> 
   )
