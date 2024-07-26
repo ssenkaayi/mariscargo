@@ -43,7 +43,36 @@ export const getExpenses = async(req,res)=>{
         const expenses = await Expense.find().sort({createdAt:-1}).limit(13)
         if(!expenses) return next(errorHandler(400,"failed to fetch expenses"))
 
-        res.status(200).json(expenses)}catch(error){
+        const page  = parseInt (req.query.page)
+        const limit = parseInt (req.query.limit)
+
+        const startIndex = (page - 1) * limit
+        const lastIndex  = (page) * limit
+
+        const results = {}
+        results.totalExpenses = expenses.length
+        results.pageCount = Math.ceil(expenses.length/limit)
+
+        if(lastIndex < expenses.length){
+            results.next = {
+                page: page + 1
+
+            }
+        }
+
+        if(startIndex > 0){
+            results.prev = {
+                page: page - 1
+                
+            }
+        }
+        
+        results.result = expenses.slice(startIndex,lastIndex)
+
+        res.status(200).json(results)
+    
+    }
+    catch(error){
 
         next(error)
     }

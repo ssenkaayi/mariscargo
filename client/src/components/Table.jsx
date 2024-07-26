@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import DeleteModel from './DeleteModel';
+import ReactPaginate from 'react-paginate';
+import { useRef } from 'react';
 
 export default function Table(props) {
 
@@ -18,23 +20,31 @@ export default function Table(props) {
   const[showDeleteModel,setShowDeleteModel]= useState(false)
   const[deleteDataApi,setDeleteDataApi]=useState('')
   const[id,setId] = useState('')
+  const [limit,setLimit] = useState(13)
+  const [pageCount,setPageCount] = useState(1)
+  const currentPage = useRef()
 
   useEffect(()=>{
-
+    currentPage.current = 1
     fetchClient()
 
   },[])
 
   const fetchClient = async()=>{
 
+    const path = tableDataApi+`?page=${currentPage.current}&limit=${limit}`
+    // console.log(path)
+
     try{
 
-      const res = await fetch(tableDataApi,{
+      const res = await fetch(path,{
         method:'GET',
       })
   
       const data = await res.json()
-      // console.log(data.message)
+      // console.log(data)
+
+     
 
       if(data.success===false){
 
@@ -53,12 +63,21 @@ export default function Table(props) {
         alert('token expired login again')
 
       }
+      setPageCount(data.pageCount)
 
-      updateTableData(data)
+
+      updateTableData(data.result)
 
     }catch(error){
       console.log(error)
     }
+
+  }
+
+  const handlePageClick = (e)=>{
+    // console.log(e)
+    currentPage.current = (e.selected+1)
+    fetchClient()
 
   }
   
@@ -210,6 +229,19 @@ export default function Table(props) {
       </div>
 
       <div className='centered text-2xl row-span-1 bg-white p-2 rounded-lg flex justify-between'>
+
+      <ReactPaginate className="flex gap-4"
+
+        breakLabel="..."
+        nextLabel="next >"
+        onPageChange={handlePageClick}
+        pageRangeDisplayed={5}
+        pageCount={pageCount}
+        previousLabel="< previous"
+        renderOnZeroPageCount={null}
+
+
+      />
 
       </div>
 

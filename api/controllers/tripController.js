@@ -27,10 +27,38 @@ export const createTrip = async(req,res,next)=>{
 export const getTrips = async(req,res,next)=>{
 
     try{
-        const trips = await Trip.find().sort({createdAt:-1}).limit(13)
+        const trips = await Trip.find().sort({createdAt:-1})   //.limit(13)
         if(!trips) return next(errorHandler(400,"fetching trips failed"))
 
-        res.status(200).json(trips)
+        const page  = parseInt (req.query.page)
+        const limit = parseInt (req.query.limit)
+
+        const startIndex = (page - 1) * limit
+        const lastIndex  = (page) * limit
+
+        const results = {}
+        results.totalTrips = trips.length
+        results.pageCount = Math.ceil(trips.length/limit)
+
+        if(lastIndex < trips.length){
+            results.next = {
+                page: page + 1
+
+            }
+        }
+
+        if(startIndex > 0){
+            results.prev = {
+                page: page - 1
+                
+            }
+        }
+        
+        results.result = trips.slice(startIndex,lastIndex)
+
+
+        res.status(200).json(results)
+
     }catch(error){
 
         next(error)

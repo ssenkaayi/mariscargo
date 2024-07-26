@@ -45,10 +45,37 @@ export const createClient = async(req,res,next)=>{
 export const getClients = async(req,res,next)=>{
 
     try{    
-        const clients = await Client.find().sort({createdAt:-1}).limit(13)
+        const clients = await Client.find().sort({createdAt:-1}) //.limit(13)
         if(!clients) return next(errorHandler(404,"fetching all clients"))
 
-        res.status(200).json(clients)
+        const page  = parseInt (req.query.page)
+        const limit = parseInt (req.query.limit)
+
+        const startIndex = (page - 1) * limit
+        const lastIndex  = (page) * limit
+
+        const results = {}
+        results.totalClients = clients.length
+        results.pageCount = Math.ceil(clients.length/limit)
+
+        if(lastIndex < clients.length){
+            results.next = {
+                page: page + 1
+
+            }
+        }
+
+        if(startIndex > 0){
+            results.prev = {
+                page: page - 1
+                
+            }
+        }
+        
+        results.result = clients.slice(startIndex,lastIndex)
+        res.status(200).json(results)
+
+        // res.status(200).json(clients)
 
     }catch(error){
         next(error)

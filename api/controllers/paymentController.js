@@ -36,7 +36,33 @@ export const getPayments = async(req,res,next)=>{
         const payments = await Payment.find().sort({createdAt:-1}).limit(13)
         if(!payments) return next(errorHandler(400,"feteching payments failed"))
 
-        res.status(200).json(payments)
+        const page  = parseInt (req.query.page)
+        const limit = parseInt (req.query.limit)
+
+        const startIndex = (page - 1) * limit
+        const lastIndex  = (page) * limit
+
+        const results = {}
+        results.totalPayments = payments.length
+        results.pageCount = Math.ceil(payments.length/limit)
+
+        if(lastIndex < payments.length){
+            results.next = {
+                page: page + 1
+
+            }
+        }
+
+        if(startIndex > 0){
+            results.prev = {
+                page: page - 1
+                
+            }
+        }
+        
+        results.result = payments.slice(startIndex,lastIndex)
+
+        res.status(200).json(results)
 
     }catch(error){
         next(error)
