@@ -2,12 +2,13 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import DeleteModel from './DeleteModel';
+// import DeleteModel from './DeleteModel';
+import DeleteModel from '../components/DeleteModel';
 import ReactPaginate from 'react-paginate';
 import { useRef } from 'react';
 import {CiSearch } from 'react-icons/ci'
 
-export default function Table(props) {
+export default function Search(props) {
 
   const{tableDataApi,tableHeading,title,column2,column3,column4,path,actionPath,deleteApi,editPath} = props
 
@@ -160,7 +161,7 @@ export default function Table(props) {
         
         <div>
 
-          Manage {title} 
+          Manage Search 
           
         </div>
 
@@ -169,7 +170,7 @@ export default function Table(props) {
           <CiSearch onClick={handleSearch} className='w-6 h-6 cursor-pointer text-sm '/>
 
           <div className='bg-slate-300 rounded-lg p-1 '>
-            <button className='cursor-pointer' onClick={()=>{navigate(path)}}>Add {title}</button>
+            <button className='cursor-pointer' onClick={()=>{navigate(path)}}>Search</button>
           
           </div>
 
@@ -184,21 +185,21 @@ export default function Table(props) {
           <thead className='bg-slate-300'>
 
             <tr>
-
+{/* 
               {tableHeading.map((item,index)=>{
 
                 return(                    
                 <th className='p-2 text-center'key={index}>{item}</th>
 
                 )
-              })}
+              })} */}
 
               <th className='text-left '>Actions</th>
             </tr>
 
           </thead >
 
-          <tbody className='p-2'>
+          {/* <tbody className='p-2'>
 
             {tableData.length>0?tableData.map((client,index)=>{
 
@@ -233,7 +234,7 @@ export default function Table(props) {
 
             </tr>}
 
-          </tbody>
+          </tbody> */}
 
         </table>
 
