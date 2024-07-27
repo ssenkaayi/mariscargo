@@ -10,7 +10,7 @@ export default function Supplier() {
     <Table tableDataApi = '/api/supplier' tableHeading={supplierTable}
      column2='tripName' title="Suppliers" column4='no_clients' 
      column3='weight' path='/' actionPath= '/supplierProfile/' 
-     deleteApi = '/api/supplier/' editPath='/editSupplier/'/> 
+     deleteApi = '/api/supplier/' editPath='/editSupplier/' searchApi='/searchSupplier'/> 
 
   </React.Fragment>
     

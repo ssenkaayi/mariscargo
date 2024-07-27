@@ -2,8 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
-// import DeleteModel from './DeleteModel';
-import DeleteModel from '../components/DeleteModel';
+import DeleteModel from './DeleteModel';
 import ReactPaginate from 'react-paginate';
 import { useRef } from 'react';
 import {CiSearch } from 'react-icons/ci'

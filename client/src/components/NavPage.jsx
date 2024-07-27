@@ -27,13 +27,14 @@ import EditPayment from '../pages/EditPayment'
 import EditExpenses from '../pages/EditExpenses'
 import EditTrip from '../pages/EditTrip'
 import TripReport from '../pages/TripReport'
-// import ViewReport from '../pages/ViewReport'
+import SearchTrip from '../pages/SearchTrip'
 import ViewTripReport from '../pages/ViewTripReport'
 import AddEmployee from '../pages/AddEmployee'
 import SupplierReport from '../pages/SupplierReport'
 import ClinetReport from '../pages/ClinetReport'
 import GeneralReport from '../pages/GeneralReport'
-import Search from '../pages/Search'
+import SearchClient from '../pages/SearchClient'
+import SearchSupplier from '../pages/SearchSupplier'
 
 export default function NavPage() {
   return (
@@ -75,7 +76,9 @@ export default function NavPage() {
             <Route path='/clientReport/:type/:year/:month' element={<ClinetReport/>}/>
             <Route path='/tripReport/:type/:year/:month' element={<ViewTripReport/>}/>
             <Route path='/generalReport/:type/:year/:month' element={<GeneralReport/>}/>
-            <Route path='/search' element={<Search/>}/>
+            <Route path='/searchClient' element={<SearchClient/>}/>
+            <Route path='/searchTrip' element={<SearchTrip/>}/>
+            <Route path='/searchSupplier' element={<SearchSupplier/>}/>
 
           </Route>
 

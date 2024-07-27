@@ -9,7 +9,7 @@ import {CiSearch } from 'react-icons/ci'
 
 export default function Table(props) {
 
-  const{tableDataApi,tableHeading,title,column2,column3,column4,path,actionPath,deleteApi,editPath} = props
+  const{tableDataApi,tableHeading,title,column2,column3,column4,path,actionPath,deleteApi,editPath,searchApi} = props
 
   const[tableData, updateTableData] = useState([])
   const [loading,setLoading] = useState(false);
@@ -147,7 +147,7 @@ export default function Table(props) {
   }
 
   const handleSearch = ()=>{
-    navigate('/search')
+    navigate(searchApi)
   }
 
   return (
