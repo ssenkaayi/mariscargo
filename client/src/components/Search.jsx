@@ -20,12 +20,20 @@ export default function Search(props) {
   const [limit,setLimit] = useState(13)
   const [pageCount,setPageCount] = useState(1)
   const currentPage = useRef()
+  const [searchItem, setSearchItem] = useState('')
 
   useEffect(()=>{
     currentPage.current = 1
     fetchClient()
 
   },[])
+
+  const handleInputChange = (e) => { 
+
+    const searchTerm = e.target.value;
+    setSearchItem(searchTerm)
+    
+  }
 
   const fetchClient = async()=>{
 
@@ -166,7 +174,12 @@ export default function Search(props) {
 
         <div className='flex justify-between gap-4 items-center centered'>
 
-          <CiSearch onClick={handleSearch} className='w-6 h-6 cursor-pointer text-sm '/>
+          <div className='flex items-center p-search-box bg-search-bar rounded-2xl '>
+
+            <CiSearch className='w-6 h-6 cursor-pointer text-sm hover:trb' onClick={handleSearch} />
+            < input className='bg-transparent p-2 outline-none' type='text' placeholder='search' value={searchItem} onChange={handleInputChange} />
+
+          </div>
 
           <div className='bg-slate-300 rounded-lg p-1 '>
             <button className='cursor-pointer' onClick={()=>{navigate(path)}}>Search</button>
@@ -259,3 +272,5 @@ export default function Search(props) {
     </div>
   )
 }
+
+
