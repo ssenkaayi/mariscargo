@@ -10,7 +10,7 @@ route.get('/',verifyToken,getClients)
 route.put('/:id',updateClient)
 route.get('/:id',getClient)
 route.delete('/:id',deleteClient)  //,verifyToken
-route.get('getReport/:year/:month', clientReport)
+route.get('/getReport/:year/:month', clientReport)
 route.get('/search/:search',searchClient)
 
 
