@@ -34,7 +34,7 @@ export default function ClinetReport() {
   
       try{
         //making a request to the server
-        const res = await fetch(`/api/${type}/${year}/${month}`,{
+        const res = await fetch(`/api/${type}/getReport/${year}/${month}`,{
           method:'GET',
         }
         );

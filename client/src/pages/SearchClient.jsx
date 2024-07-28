@@ -8,7 +8,7 @@ export default function SearchClient() {
     
     <React.Fragment>
 
-      <Search tableDataApi = '/api/client'  tableHeading={clientTable} 
+      <Search tableDataApi = '/api/client/search/'  tableHeading={clientTable} 
       column2='weight' title="Clients" column4='deliveries' 
       column3='payments' path='/clients' actionPath= '/clientProfile/' 
       deleteApi = '/api/client/' editPath='/editClient/' searchApi='/searchClient'

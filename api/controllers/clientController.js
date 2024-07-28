@@ -114,7 +114,7 @@ export const updateClient = async(req,res,next)=>{
     }
 }
 
-export const getClient = async(req,res)=>{
+export const getClient = async(req,res,next)=>{
 
     try{
         const isValidId = isValidObjectId(req.params.id)
@@ -183,7 +183,7 @@ export const clientReport = async(req,res,next)=>{
         let totalPayments = 0
    
         const clients = await Client.aggregate([{
-        $project:{name:1,weight:1,deliveries:1,payments:1,date:1,year:{$year:"$date"},month:{$month:"$date"}
+        $project:{name:1,weight:1,deliveries:1,payments:1,date:1,year:{$year:"$date"},month:{$month:"$date"},
         }},{$match:{year:parseInt(req.params.year),month:parseInt(req.params.month)}}, 
         ])
 
@@ -215,6 +215,30 @@ export const clientReport = async(req,res,next)=>{
 
         next(error)
     }
+}
+
+export const searchClient = async(req,res,next)=>{
+
+    try{
+        // Client.createIndex( { name: "text",} )
+        const search = await Client.find(            {
+            "$or" : [
+                {
+                    name:{$regex:req.params.search , $options:'i'},
+
+    
+                },
+
+            ]
+        }
+    ).sort({createdAt:-1})
+        res.status(200).json(search)
+
+    }catch(error)
+    {
+        next(error)
+    }
+
 }
 
 

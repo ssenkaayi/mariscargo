@@ -22,23 +22,36 @@ export default function Search(props) {
   const currentPage = useRef()
   const [searchItem, setSearchItem] = useState('')
 
-  useEffect(()=>{
+  // useEffect(()=>{
+  //   currentPage.current = 1
+  //   fetchClient()
+
+  // },[])
+
+  const handleSearch = ()=>{
+    // navigate('/search')
+    console.log(path)
     currentPage.current = 1
     fetchClient()
 
-  },[])
+  }
 
   const handleInputChange = (e) => { 
 
     const searchTerm = e.target.value;
+    // console.log(searchTerm)
     setSearchItem(searchTerm)
+    // console.log(searchItem)
+    // const path = tableDataApi+searchItem+`?page=${currentPage.current}&limit=${limit}`
+    // console.log(path)
+    
     
   }
 
   const fetchClient = async()=>{
 
-    const path = tableDataApi+`?page=${currentPage.current}&limit=${limit}`
-    // console.log(path)
+    const path = tableDataApi+searchItem+`?page=${currentPage.current}&limit=${limit}`
+    console.log(path)
 
     try{
 
@@ -47,14 +60,12 @@ export default function Search(props) {
       })
   
       const data = await res.json()
-      // console.log(data)
+      console.log(data)
 
       if(data.success===false){
-
-        window.localStorage.clear()
-        window.location.href = './login'
-        // console.log(data.message)
-        alert('token expired login again')
+        console.log(data.message)
+        // alert('token expired login again')
+        setError(data.message)
 
         return
       }
@@ -68,7 +79,7 @@ export default function Search(props) {
       }
       setPageCount(data.pageCount)
 
-      updateTableData(data.result)
+      updateTableData(data)
 
     }catch(error){
       console.log(error)
@@ -151,9 +162,7 @@ export default function Search(props) {
  
   }
 
-  const handleSearch = ()=>{
-    navigate('/search')
-  }
+
 
   return (
 
@@ -179,7 +188,7 @@ export default function Search(props) {
           </div>
 
           <div className='bg-slate-300 rounded-lg p-1'>
-            <button className='cursor-pointer m-1 uppercase' onClick={()=>{navigate(path)}}>Search</button>
+            <button className='cursor-pointer m-1 uppercase' onClick={handleSearch}>Search</button>
           
           </div>
 
