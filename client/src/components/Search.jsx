@@ -9,7 +9,7 @@ import {CiSearch } from 'react-icons/ci'
 
 export default function Search(props) {
 
-  const{tableDataApi,tableHeading,title,column2,column3,column4,path,actionPath,deleteApi,editPath} = props
+  const{tableDataApi,tableHeading,title,column2,column3,column4,path,actionPath,deleteApi,editPath,} = props
 
   const[tableData, updateTableData] = useState([])
   const [loading,setLoading] = useState(false);
@@ -49,8 +49,6 @@ export default function Search(props) {
       const data = await res.json()
       // console.log(data)
 
-     
-
       if(data.success===false){
 
         window.localStorage.clear()
@@ -69,7 +67,6 @@ export default function Search(props) {
 
       }
       setPageCount(data.pageCount)
-
 
       updateTableData(data.result)
 
@@ -176,13 +173,13 @@ export default function Search(props) {
 
           <div className='flex items-center p-search-box bg-search-bar rounded-2xl '>
 
-            <CiSearch className='w-6 h-6 cursor-pointer text-sm hover:trb' onClick={handleSearch} />
+            <CiSearch className='w-6 h-6 cursor-pointer text-sm hover:trb m-2' onClick={handleSearch} />
             < input className='bg-transparent p-2 outline-none' type='text' placeholder='search' value={searchItem} onChange={handleInputChange} />
 
           </div>
 
-          <div className='bg-slate-300 rounded-lg p-1 '>
-            <button className='cursor-pointer' onClick={()=>{navigate(path)}}>Search</button>
+          <div className='bg-slate-300 rounded-lg p-1'>
+            <button className='cursor-pointer m-1 uppercase' onClick={()=>{navigate(path)}}>Search</button>
           
           </div>
 
@@ -197,21 +194,21 @@ export default function Search(props) {
           <thead className='bg-slate-300'>
 
             <tr>
-{/* 
+
               {tableHeading.map((item,index)=>{
 
                 return(                    
                 <th className='p-2 text-center'key={index}>{item}</th>
 
                 )
-              })} */}
+              })}
 
               <th className='text-left '>Actions</th>
             </tr>
 
           </thead >
 
-          {/* <tbody className='p-2'>
+          <tbody className='p-2'>
 
             {tableData.length>0?tableData.map((client,index)=>{
 
@@ -246,7 +243,7 @@ export default function Search(props) {
 
             </tr>}
 
-          </tbody> */}
+          </tbody>
 
         </table>
 

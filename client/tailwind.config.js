@@ -10,6 +10,7 @@ export default {
       colors:{
 
         "card":"rgba(229,223,223)",
+        "search-bar":"rgba(237, 237,237)",
         
       
       },

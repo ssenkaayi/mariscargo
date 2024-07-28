@@ -10,7 +10,7 @@ export default function Trip() {
      tableHeading={tripTable} column2='weight' 
      title="Trips" column4='trip_payment' 
      column3='expense' path='/addTrip' actionPath= '/tripProfile/' 
-     deleteApi = '/api/trip/deleteTrip/' editPath='editTrip/' searchApi='/searchClient'/>
+     deleteApi = '/api/trip/deleteTrip/' editPath='editTrip/' searchApi='/searchTrip'/>
 
   </React.Fragment>
     
