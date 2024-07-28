@@ -22,15 +22,8 @@ export default function Search(props) {
   const currentPage = useRef()
   const [searchItem, setSearchItem] = useState('')
 
-  // useEffect(()=>{
-  //   currentPage.current = 1
-  //   fetchClient()
-
-  // },[])
-
   const handleSearch = ()=>{
-    // navigate('/search')
-    console.log(path)
+
     currentPage.current = 1
     fetchClient()
 
@@ -39,19 +32,14 @@ export default function Search(props) {
   const handleInputChange = (e) => { 
 
     const searchTerm = e.target.value;
-    // console.log(searchTerm)
     setSearchItem(searchTerm)
-    // console.log(searchItem)
-    // const path = tableDataApi+searchItem+`?page=${currentPage.current}&limit=${limit}`
-    // console.log(path)
-    
     
   }
 
   const fetchClient = async()=>{
 
     const path = tableDataApi+searchItem+`?page=${currentPage.current}&limit=${limit}`
-    console.log(path)
+    // console.log(path)
 
     try{
 
@@ -60,11 +48,10 @@ export default function Search(props) {
       })
   
       const data = await res.json()
-      console.log(data)
+      // console.log(data)
 
       if(data.success===false){
-        console.log(data.message)
-        // alert('token expired login again')
+
         setError(data.message)
 
         return
@@ -79,7 +66,7 @@ export default function Search(props) {
       }
       setPageCount(data.pageCount)
 
-      updateTableData(data)
+      updateTableData(data.result)
 
     }catch(error){
       console.log(error)

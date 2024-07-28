@@ -29,7 +29,7 @@ export default function Login() {
     e.preventDefault();
 
     try{
-      console.log(employData)
+      // console.log(employData)
       dispatch(signInStart())
       //making a request to the server
       const res = await fetch('/api/employee/login',{

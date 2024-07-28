@@ -231,8 +231,38 @@ export const searchClient = async(req,res,next)=>{
 
             ]
         }
-    ).sort({createdAt:-1})
-        res.status(200).json(search)
+        ).sort({createdAt:-1})
+
+
+        const page  = parseInt (req.query.page)
+        const limit = parseInt (req.query.limit)
+
+        const startIndex = (page - 1) * limit
+        const lastIndex  = (page) * limit
+
+        const results = {}
+        results.totalSearch =search.length
+        results.pageCount = Math.ceil(search.length/limit)
+
+        if(lastIndex <search.length){
+            results.next = {
+                page: page + 1
+
+            }
+        }
+
+        if(startIndex > 0){
+            results.prev = {
+                page: page - 1
+                
+            }
+        }
+        
+        results.result =search.slice(startIndex,lastIndex)
+        res.status(200).json(results)
+
+
+        // res.status(200).json(search)
 
     }catch(error)
     {
