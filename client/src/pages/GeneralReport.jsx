@@ -4,6 +4,8 @@ import ViewReport from '../components/ViewReport';
 import { clientTable } from '../data/TableHeading';
 import { useParams } from 'react-router-dom'
 import { useEffect } from 'react';
+import  { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
 
 export default function ClinetReport() {
@@ -67,15 +69,23 @@ export default function ClinetReport() {
       } 
     }
 
-    const handlePrint =()=>{
-        window.print()
-      }
-    
+    // const handlePrint =()=>{
+    //     window.print()
+    //   }
+
+    const contentToPrint = useRef(null);
+    const handlePrint = useReactToPrint({
+        documentTitle: "Print This Document",
+        onBeforePrint: () => console.log("before printing..."),
+        onAfterPrint: () => console.log("after printing..."),
+        removeAfterPrint: true,
+    });
+
   return (
 
     <div className='grid grid-rows-11 p-2 gap-3 w-full h-full rounded-lg bg-slate-100'>
 
-    <div className='centered row-span-10 bg-white p-2 rounded-lg '>
+    <div ref={contentToPrint}  className='centered row-span-10 bg-white p-2 rounded-lg '>
 
         <div className='text-center mb-5 mt-5 text-xl'>
             
@@ -224,9 +234,12 @@ export default function ClinetReport() {
     
         <div>
 
-        <button 
-            onClick={()=>handlePrint()}  className='flex text-sm items-center p-2 ml-8 bg-gray-400 rounded-lg'>PRINT
-        </button>
+            <button className='flex text-sm items-center p-2 ml-8 bg-gray-400 rounded-lg' onClick={() => {
+
+                handlePrint(null, () => contentToPrint.current);
+                }}>
+                PRINT
+            </button>
 
 
             
