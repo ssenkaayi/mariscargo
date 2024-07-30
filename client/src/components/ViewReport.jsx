@@ -1,19 +1,28 @@
 
 import React from 'react'
+import  { useRef } from 'react';
+import { useReactToPrint } from 'react-to-print';
 
 export default function ViewReport(props) {
 
-    const handlePrint =()=>{
-        window.print()
-      }
+  
+    const contentToPrint = useRef(null);
+    const handlePrint = useReactToPrint({
+        documentTitle: "Print This Document",
+        onBeforePrint: () => console.log("before printing..."),
+        onAfterPrint: () => console.log("after printing..."),
+        removeAfterPrint: true,
+    });
 
   const {tableHeading,tableData, reportDetails,title, column1,column2,column3,details1,details2,details3,detailsData1,detailsData2} = props
 //   console.log(reportDetails)
   return (
+
+    
     
     <div className='grid grid-rows-11 p-2 gap-3 w-full h-full rounded-lg bg-slate-100'>
 
-        <div className='centered row-span-10 bg-white p-2 rounded-lg '>
+        <div ref={contentToPrint} className='centered row-span-10 bg-white p-2 rounded-lg '>
 
             <div className='mb-3 mt-2 text-xl'>
                 
@@ -23,7 +32,7 @@ export default function ViewReport(props) {
             <div className='m-2 text-x '>
                 <p className='flex gap-8'><span className='w-50'>Weight:</span><span>{reportDetails.totalWeight.toFixed(2)}</span></p >
                 <p className='flex gap-8'><span className='w-50'> {details1}:</span><span>{detailsData1}</span></p >
-                <p className='flex gap-8'><span className='w-50'> {details2}:</span><span>{detailsData2.toFixed(2)}</span></p >
+                <p className='flex gap-8'><span className='w-50'> {details2}:</span><span>{detailsData2}</span></p >
                 <p className='flex gap-8'><span className='w-50'>No {details3}:</span><span></span>{reportDetails.number}</p >
             </div>
 
@@ -78,9 +87,13 @@ export default function ViewReport(props) {
         
             <div>
 
-            <button 
-                onClick={()=>handlePrint()}  className='flex text-sm items-center p-2 ml-8 bg-gray-400 rounded-lg'>PRINT
-            </button>
+
+                <button className='flex text-sm items-center p-2 ml-8 bg-gray-400 rounded-lg' onClick={() => {
+
+                    handlePrint(null, () => contentToPrint.current);
+                }}>
+                    PRINT
+                </button>
 
 
                 
