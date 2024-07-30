@@ -23,7 +23,7 @@ export default function ViewReport(props) {
             <div className='m-2 text-x '>
                 <p className='flex gap-8'><span className='w-50'>Weight:</span><span>{reportDetails.totalWeight.toFixed(2)}</span></p >
                 <p className='flex gap-8'><span className='w-50'> {details1}:</span><span>{detailsData1}</span></p >
-                <p className='flex gap-8'><span className='w-50'> {details2}:</span><span>{detailsData2}</span></p >
+                <p className='flex gap-8'><span className='w-50'> {details2}:</span><span>{detailsData2.toFixed(2)}</span></p >
                 <p className='flex gap-8'><span className='w-50'>No {details3}:</span><span></span>{reportDetails.number}</p >
             </div>
 
