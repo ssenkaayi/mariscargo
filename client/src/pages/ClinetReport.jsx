@@ -11,7 +11,7 @@ export default function ClinetReport() {
     const [loading,setLoading] = useState(false);
     const [error,setError] = useState(null);
     const [reportData,setReportData] = useState([])
-    const [tripDetails,setTripDetails] = useState({number:0,totalExpense:0,totalTrip_Payment:0,totalWeight:0})
+    const [tripDetails,setTripDetails] = useState({number:0,totalExpense:0,totalTrip_Payment:0,totalWeight:0,totalDeliveries:0})
   
     const year = params.year
     const month = params.month
@@ -71,7 +71,7 @@ export default function ClinetReport() {
 
         < ViewReport reportDetails={tripDetails} tableData={reportData} tableHeading={clientTable} column1='weight'
         column2='payments' column3='deliveries' title={title} details1='payments' details2='deliveries' details3='clients'
-        detailsData1={tripDetails.totalPayments} detailsData2={tripDetails.totalDeliveries}/>
+        detailsData1={tripDetails.totalPayments} detailsData2={tripDetails.totalDeliveries.toFixed(2)}/>
 
     </div>
   )
