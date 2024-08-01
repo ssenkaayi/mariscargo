@@ -29,11 +29,34 @@ export default function ViewReport(props) {
                 <p>{title}</p>
             </div>
 
-            <div className='m-2 text-x '>
-                <p className='flex gap-8'><span className='w-50'>Weight:</span><span>{reportDetails.totalWeight.toFixed(2)}</span></p >
+            <div className='m-2 text-x flex gap-4'>
+                {/* <p className='flex gap-8'><span className='w-50'>Weight:</span><span>{reportDetails.totalWeight.toFixed(2)}</span></p >
                 <p className='flex gap-8'><span className='w-50'> {details1}:</span><span>{detailsData1}</span></p >
                 <p className='flex gap-8'><span className='w-50'> {details2}:</span><span>{detailsData2}</span></p >
-                <p className='flex gap-8'><span className='w-50'>No {details3}:</span><span></span>{reportDetails.number}</p >
+                <p className='flex gap-8'><span className='w-50'>No {details3}:</span><span></span>{reportDetails.number}</p > */}
+
+
+                <div className='flex  flex-col'>
+
+                    {/* hello */}
+                    <span className='w-50'>Weight:</span>
+                    <span className='w-50'> {details1}:</span>
+                    <span className='w-50'> {details2}:</span>
+                    <span className='w-50'>No {details3}:</span>
+
+                </div>
+
+                <div className='flex  flex-col'>
+
+                    <span>{reportDetails.totalWeight.toFixed(2)} kgs</span>
+                    <span> $ {detailsData1}</span>
+                    <span>{detailsData2} kgs</span>
+                    {reportDetails.number}
+                    
+
+                    {/* world */}
+
+                </div>
             </div>
 
             <table className='w-full bordered hover mt-5'>
