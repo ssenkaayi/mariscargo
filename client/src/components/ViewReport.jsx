@@ -5,7 +5,6 @@ import { useReactToPrint } from 'react-to-print';
 
 export default function ViewReport(props) {
 
-  
     const contentToPrint = useRef(null);
     const handlePrint = useReactToPrint({
         documentTitle: "Print This Document",
@@ -14,19 +13,21 @@ export default function ViewReport(props) {
         removeAfterPrint: true,
     });
 
-  const {tableHeading,tableData, reportDetails,title, column1,column2,column3,details1,details2,details3,detailsData1,detailsData2} = props
-//   console.log(reportDetails)
+  const {tableHeading,tableData, reportDetails,title, column1,column2,column3,details1,details2,details3,detailsData1,detailsData2,month,year} = props
+  const months = ['START','JANUARY','FEBUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST']
+  
   return (
 
-    
-    
     <div className='grid grid-rows-11 p-2 gap-3 w-full h-full rounded-lg bg-slate-100'>
 
         <div ref={contentToPrint} className='centered row-span-10 bg-white p-2 rounded-lg '>
 
             <div className='mb-3 mt-2 text-xl'>
                 
-                <p>{title}</p>
+                <h1 className='text-center text-5xl m-4'><strong>MARIS CARGO LIMITED</strong></h1>
+                <strong className='uppercase'>{title} REPORT FOR {months[month]} {year}</strong>
+
+
             </div>
 
             <div className='m-2 text-x flex gap-4'>
