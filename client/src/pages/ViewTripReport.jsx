@@ -69,8 +69,8 @@ export default function ViewTripReport() {
    <div>
 
     < ViewReport reportDetails={tripDetails} tableData={reportData} tableHeading={tripTable} column1='weight'
-    column2='expense' column3='trip_payment' title={title} details1='Expenses' details2='Trip Payments' details3='trips'
-    detailsData1={tripDetails.totalExpense} detailsData2={tripDetails.totalTrip_Payment}/>
+    column2='expense' column3='trip_payment' title='trip' details1='Expenses' details2='Trip Payments' details3='trips'
+    detailsData1={tripDetails.totalExpense} detailsData2={tripDetails.totalTrip_Payment} month={month} year={year}/>
 
    </div>
 

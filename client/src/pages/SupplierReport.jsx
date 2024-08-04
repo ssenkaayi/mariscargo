@@ -69,8 +69,8 @@ export default function SupplierReport() {
     <div>
 
         < ViewReport reportDetails={tripDetails} tableData={reportData} tableHeading={supplierTable} column1='tripName'
-        column2='weight' column3='no_clients' title={title} details1='payments' details2='deliveries' details3='clients'
-        detailsData1={tripDetails.totalPayments} detailsData2={tripDetails.totalDeliveries}/>
+        column2='weight' column3='no_clients' title='supplier' details1='payments' details2='deliveries' details3='supplies'
+        detailsData1={tripDetails.totalPayments} detailsData2={tripDetails.totalDeliveries} month={month} year={year}/>
 
     </div>
   )

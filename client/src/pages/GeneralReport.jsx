@@ -19,6 +19,8 @@ export default function ClinetReport() {
     const year = params.year
     const month = params.month
     const type = params.type
+
+    const months = ['START','JANUARY','FEBUARY','MARCH','APRIL','MAY','JUNE','JULY','AUGUST']
   
     const title = `GENERAL REPORT FOR  IN ${month} OF ${year}`
     //   
@@ -87,10 +89,57 @@ export default function ClinetReport() {
 
     <div ref={contentToPrint}  className='centered row-span-10 bg-white p-2 rounded-lg '>
 
-        <div className='text-center mb-5 mt-5 text-xl'>
+        <div className=' mb-5 mt-5 text-xl'>
+
+            <h1 className='text-center text-5xl m-4'><strong>MARIS CARGO LIMITED</strong></h1>
+            <strong className='uppercase text-center'> GENERAL REPORT FOR {months[month]} {year}</strong>
             
-            <p><strong>{title}</strong></p>
+            {/* <p><strong>{title}</strong></p> */}
         </div>
+
+        <h2 className='uppercase mt-5 mb-2'><strong>client monthly summury</strong></h2>
+
+<table className='w-full bordered hover mt-5 mb-10'>
+
+    <thead className='bg-slate-300'>
+
+        <tr>
+
+            <th className='p-2 text-center'>No Clients</th>
+            <th className='p-2 text-center'>Weight</th>
+            <th className='p-2 text-center'>Payments</th>
+            <th className='p-2 text-center'>Deliveries</th>
+
+        </tr>
+
+    </thead >
+
+    <tbody className='p-1 first-letter:'>
+
+        {clientDetails.length>0?clientDetails.map((client,index)=>{
+
+        return(  
+            
+            <tr className='text-center ' key={index}>
+
+            <td className='p-2'>{client.count}</td>
+            <td >{client.weight}</td>
+            <td >{client.payments}</td>
+            <td >{client.deliveries}</td>
+            {/* <td >{client.expense}</td> */}
+
+            </tr>                  
+
+        )
+        }):<tr className='text-center'>
+
+        <td className='text-center'>{title} not available </td>
+
+        </tr>}
+
+    </tbody>
+
+</table>
 
         <h2 className='uppercase mt-5 '><strong>trip monthly summury</strong></h2>
 
@@ -182,51 +231,6 @@ export default function ClinetReport() {
             </tbody>
 
         </table>
-
-        <h2 className='uppercase mt-5 mb-2'><strong>client monthly summury</strong></h2>
-
-        <table className='w-full bordered hover mt-5 mb-10'>
-
-            <thead className='bg-slate-300'>
-
-                <tr>
-
-                    <th className='p-2 text-center'>No Clients</th>
-                    <th className='p-2 text-center'>Weight</th>
-                    <th className='p-2 text-center'>Payments</th>
-                    <th className='p-2 text-center'>Deliveries</th>
-
-                </tr>
-
-            </thead >
-
-            <tbody className='p-1 first-letter:'>
-
-                {clientDetails.length>0?clientDetails.map((client,index)=>{
-
-                return(  
-                    
-                    <tr className='text-center ' key={index}>
-
-                    <td className='p-2'>{client.count}</td>
-                    <td >{client.weight}</td>
-                    <td >{client.payments}</td>
-                    <td >{client.deliveries}</td>
-                    {/* <td >{client.expense}</td> */}
-
-                    </tr>                  
-
-                )
-                }):<tr className='text-center'>
-
-                <td className='text-center'>{title} not available </td>
-
-                </tr>}
-
-            </tbody>
-
-        </table>
-
 
     </div>
 
